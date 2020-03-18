@@ -1,0 +1,35 @@
+<h1>商品詳細画面</h1>
+<%= attachment_image_tag @product, :product_image, :fill, 100, 100 %>
+
+<div>
+	<label>商品名</label>
+	<%= @product.product_name %>
+</div>
+
+<div>
+	<label>商品説明</label>
+	<%= @product.product_description %>
+</div>
+
+<div>
+	<label>ジャンル</label>
+</div>
+
+<div>
+	<label>税込価格</label>
+	<label>(税抜価格)</label>
+	<% price = @product.unit_price * 1.1 %>
+	<%= price.floor %>
+	(<%= @product.unit_price %>)円
+</div>
+
+<div>
+	<label>販売ステータス</label>
+	<% if @product.is_selling == true %>
+	  	<td>販売中</td>
+	  	<% else %>
+	  	<td>売切</td>
+	<% end %>
+</div>
+
+<%= link_to "編集する", edit_admins_product_path(@product.id) %>

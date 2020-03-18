@@ -1,0 +1,18 @@
+<h1>商品一覧画面</h1>
+ <% @products.each do |product| %>
+ 	<table>
+	 	<tr>
+		  <td><%= product.id %></td>
+		  <td><%= link_to admins_product_path(product.id) do %>
+		  	  <%= product.product_name %>
+		  	  <% end %>
+		  <td>
+		  <td><%= product.unit_price %></td>
+		  <% if product.is_selling == true %>
+		  	<td>販売中</td>
+		  	<% else %>
+		  	<td>売切</td>
+		  <% end %>
+		</tr>
+	</table>
+ <% end %>
