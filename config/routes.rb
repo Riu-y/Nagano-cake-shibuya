@@ -16,6 +16,11 @@ devise_for :customers, controllers: {
   registrations: 'customers/registrations'
 }
 
+devise_scope :customers do
+	get 'customers/sign_in' => 'customers/sessions#create'
+	get 'customers/sign_out' => 'customers/sessions#destroy'
+end
+
 namespace :admins do
 	resources :customers, only:[:index, :show, :edit, :update]
 	resources :products
@@ -25,7 +30,7 @@ namespace :admins do
 end
 
 
-namespace :cutomers do
+namespace :customers do
 	resources :customers, only:[:show, :edit, :update,]do
 		member do
 			get :delete, as: :delete
@@ -43,8 +48,8 @@ namespace :cutomers do
 		end
 	end
 	resources :shipping_addresses, only:[:index, :create, :edit, :update, :destroy]
-	root 'homes#top'
 	end
+	root 'homes#top'
 end
 
 	resources :products, only: [:index, :show]
