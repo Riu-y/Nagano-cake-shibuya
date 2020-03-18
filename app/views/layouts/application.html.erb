@@ -10,7 +10,10 @@
   </head>
 
   <body>
-    <%= link_to "logout", destroy_admin_session_path, method: :delete %>
+    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+
+    <%= link_to "ジャンル管理", admins_genres_path %>
+    
     <%= yield %>
   </body>
 </html>
