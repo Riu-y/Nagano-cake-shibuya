@@ -1,0 +1,14 @@
+<center>
+
+<h1>本当に退会しますか?</h1>
+
+
+<h2>退会すると、会員登録情報や<br>
+これまでの購入履歴が閲覧できなくなります。<br>
+退会する場合は、「退会する」をクリックしてください。</h2>
+<center>
+
+<tr>
+	<td>退会しない</td>
+	<td><%= link_to "退会する", active_false_customers_customer_path(@customers.id) ,method: :patch %></td>
+</tr>
