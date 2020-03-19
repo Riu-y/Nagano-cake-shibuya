@@ -5,6 +5,7 @@ class Admins::ProductsController < ApplicationController
 
 	def new
 		@product = Product.new
+		@genre = Genre.all
 	end
 
 	def create
@@ -19,6 +20,7 @@ class Admins::ProductsController < ApplicationController
 
 	def show
 		@product = Product.find(params[:id])
+		@genre = @product.genre
 	end
 
 	def edit
