@@ -1,10 +1,13 @@
 class Admins::ProductsController < ApplicationController
+	before_action :authenticate_admin!
+
 	def index
 		@products = Product.all
 	end
 
 	def new
 		@product = Product.new
+		@genre = Genre.all
 	end
 
 	def create
@@ -19,6 +22,7 @@ class Admins::ProductsController < ApplicationController
 
 	def show
 		@product = Product.find(params[:id])
+		@genre = @product.genre
 	end
 
 	def edit
