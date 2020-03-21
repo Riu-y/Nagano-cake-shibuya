@@ -14,7 +14,8 @@ def create
 	@shipping_address = ShippingAddress.new(shipping_address_params)
   @shipping_address.customer_id = current_customer.id
   	if @shipping_address.save #入力されたデータをdbに保存する。
-  		redirect_to customers_customer_shipping_addresses_path(@customer), notice: "successfully created book!"#保存された場合の移動先を指定。
+      redirect_back(fallback_location: customers_root_path)
+  		#redirect_to customers_customer_shipping_addresses_path(@customer.id), notice: "successfully created book!"#保存された場合の移動先を指定。
   	else
   		@shipping_addresses = ShippingAddress.all
   		render 'index'
@@ -36,4 +37,4 @@ end
   def shipping_address_params
       params.require(:shipping_address).permit(:shipping_addresses_id, :shipping_postal_code, :shipping_address, :shipping_name)
   end
-end
+
