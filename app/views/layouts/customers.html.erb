@@ -19,9 +19,9 @@
 			<nav>
 				<ul class="nav navbar-nav navbar-right">
 					<% if customer_signed_in? %>
-						<li><%= link_to "マイページ", "#" %></li>
+						<li><%= link_to "マイページ", customers_customer_path(current_customer.id) %></li>
 						<li><%= link_to "商品一覧", products_path %></li>
-						<li><%= link_to "カート", "#" %></li>
+						<li><%= link_to "カート", customers_customer_carts_path(current_customer.id) %></li>
 						<li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
 					<% else %>
 						<li><%= link_to "商品一覧", products_path %></li>
