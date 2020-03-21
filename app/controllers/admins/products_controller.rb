@@ -1,5 +1,6 @@
 class Admins::ProductsController < ApplicationController
 	before_action :authenticate_admin!
+	layout 'admins'
 
 	def index
 		@products = Product.all

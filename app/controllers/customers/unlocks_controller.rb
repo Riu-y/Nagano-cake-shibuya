@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Customers::UnlocksController < Devise::UnlocksController
+  layout 'customers'
   # GET /resource/unlock/new
   # def new
   #   super
