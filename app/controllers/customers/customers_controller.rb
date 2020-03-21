@@ -13,9 +13,8 @@ class Customers::CustomersController < ApplicationController
 
 	def update
 	 @customer = Customer.find(params[:id])
-	 @customer.update
-	 redirect_to customer_path(@customer)
-
+	 @customer.update(customer_params)
+	 redirect_to edit_customers_customer_path(@customer.id)
 # 更新できた場合とできない場合で条件式をわける
 	end
 
