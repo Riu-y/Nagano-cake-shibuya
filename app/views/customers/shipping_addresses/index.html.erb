@@ -1,0 +1,53 @@
+<h1>配送先登録/一覧</h1>
+
+
+
+
+  <%= form_for @shipping_address, url:  customers_customer_shipping_addresses_path(@customer) do |f| %>
+
+  <div class="field">
+    <%= f.label :郵便番号（ハイフンなし） %>
+    <%= f.text_field :shipping_postal_code, autofocus: true, autocomplete:"", placeholder:"郵便番号" %>
+  </div>
+  <div class="field">
+    <%= f.label :住所 %>
+    <%= f.text_field :shipping_address, autofocus: true, autocomplete:"", placeholder:"住所" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :宛名 %>
+    <%= f.text_field :shipping_name, autofocus: true, autocomplete:"", placeholder:"宛名" %>
+  </div>
+
+   <div class="actions">
+    <%= f.submit "登録する" %>
+  </div>
+
+
+<tr>
+  <td>郵便番号     </td>
+  <td>住所     </td>
+  <td>宛名</td>
+</tr>
+
+
+<tbody>
+        <% @shipping_addresses.each do |s| %>
+        <tr>
+          <td>
+            <%= link_to user_path(book.user.id) do %>
+            <%= attachment_image_tag(book.user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
+            <% end %>
+          </td>
+          <td><%= link_to book.title, book, class: "book_#{book.id}" %></td>
+          <td><%= book.body %></td>
+        </tr>
+        <% end %>
+      </tbody>
+
+<% end %>
+
+
+
+
+
