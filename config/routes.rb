@@ -53,8 +53,9 @@ namespace :customers do
 	root 'homes#top'
 end
 
-	resources :products, only: [:index, :show]
-	 # adminとcustomer でrootをどう分ける？
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+	resources :products, only: [:index, :show]do
+		 member do
+			get :genre_search
+		end
+	end
 end
