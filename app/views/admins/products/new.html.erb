@@ -16,7 +16,7 @@
 
 	<div>
 		<label>ジャンル</label>
-		<%= f.collection_select(:genre_id, @genre, :id, :genre_name) %>
+		<%= f.collection_select(:genre_id, Genre.all, :id, :genre_name,:prompt => "選択してください") %>
 	</div>
 
 	<div>
@@ -28,7 +28,7 @@
 	<div>
 		<label>販売<br>
 		ステータス</label>
-		<%= f.select(:is_selling, [['販売中', true], ['売切', false]]) %>
+		<%= f.select(:is_selling, [['販売中', true], ['売切', false]],:prompt => "選択してください") %>
 	</div>
 
 	<div>

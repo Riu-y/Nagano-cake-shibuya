@@ -1,13 +1,12 @@
-<h2>Sign up</h2>
+<h2>登録情報編集</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<%= form_for(@customer,url: edit_customers_customer_path(@customer)) do |f| %>
 
   <div class="field">
     <%= f.label :姓 %>
     <%= f.text_field :family_name, autofocus: true, autocomplete:"", placeholder:"姓" %>
   </div>
-　<div class="field">
+  <div class="field">
     <%= f.label :名 %>
     <%= f.text_field :first_name, autofocus: true, autocomplete:"", placeholder:"名" %>
   </div>
@@ -42,30 +41,13 @@
     <%= f.text_field :telephone_number, autofocus: true, autocomplete:"",placeholder: "電話番号" %>
   </div>
 
-  <div class="field">
-    <%= f.label :パスワード %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-
-
-  <div class="field">
-    <%= f.label :パスワード（確認用） %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-
-<div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="actions">
+    <%= f.submit "編集内容を保存する" %>
   </div>
 <% end %>
 
-<%= render "customers/shared/links" %>
 
-<h3>既に登録済みの方</h3>
-<div>
-<%=link_to "こちら", new_customer_session_path %>からログインしてください。
-</div>
+
+
+
+<%= link_to "退会する", delete_customers_customer_path(@customer.id) %>

@@ -34,6 +34,7 @@ namespace :customers do
 	resources :customers, only:[:show, :edit, :update,]do
 		member do
 			get :delete, as: :delete
+			patch :active_false, as: :active_false
 		end
 	resource :order_details, only:[:new, :cretae, :complete]do
 		member do
