@@ -30,3 +30,17 @@ header{
 .body{
 	margin-top:51px;
 }
+
+thead{
+	background-color: #dcdcdc;
+}
+
+th, td {
+  font-size: 17px;
+}
+
+#customer td,
+#customer tr{
+	border-style: none;
+}
+
