@@ -1,4 +1,6 @@
 class OrderDetail < ApplicationRecord
+  belongs_to :customer
+
 	enum order_status:{
     wait_deposit: 0, #入金待ち
     payment_confirmation: 1, #入金確認
