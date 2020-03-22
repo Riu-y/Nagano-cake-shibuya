@@ -1,0 +1,38 @@
+<h2>ショッピングカート</h2>
+	<%= link_to  "カートを空にする" alldestroy_customers_customer_cart_path ,method: :alldestroy, class: "btn btn-danger" %>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>商品名</th>
+					<th>単価(税込)</th>
+					<th>数量</th>
+					<th>小計</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<!-- 商品名 -->
+					<td><%= attachment_image_tag @products,:product_image, :fill, 50, 50 %><%= @product.product_name %></td>
+					<!-- 単価(税込) -->
+					<td><% price = @product.unit_price * 1.1 %>
+							<%= price.floor %>(税込)</td>
+					<!-- 数量 -->
+					<td></td>
+					<!-- 小計 -->
+					<td></td>
+					<!-- 削除ボタン -->
+					<td><%= link_to "削除する", customers_customer_cart, method: :destroy, class: "btn btn-danger" %></td>
+				</tr>
+			</tbody>
+		</table>
+	<%= link_to "買い物を続ける",products_path, class: "btn btn-success" %>
+		<table>
+			<tr><!-- 合計金額 -->
+				<td>合計金額</td>
+				<td></td>
+			</tr>
+		</table>
+<%= form_for(@product) do |f| %>
+	<%= f.submit "情報入力に進む",class: "btn btn-success" %>
+<% end %>

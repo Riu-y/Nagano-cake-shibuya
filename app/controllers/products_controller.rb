@@ -5,14 +5,13 @@ class ProductsController < ApplicationController
 		@products = Product.all
 	end
 
-	def genre_search
-		@genres = Genre.all
-		@products = Product.where(genre_id: params[:id])
-		# @products = Product.find(params[:genre_id)
-	end
-
 	def show
 		@genres = Genre.all
 		@product = Product.find(params[:id])
+	end
+		def genre_search
+		@genres = Genre.all
+		@genre = Genre.find(params[:id])
+		@products = Product.where(genre_id: params[:id])
 	end
 end

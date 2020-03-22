@@ -11,26 +11,19 @@
 				<% end %>
 			</table>
 		</div>
-		ganre_search_product
-
-
 		<div class="col-xs-9">
-		<h3>商品一覧</h3>
-			<table class="table table-hover table-inverse">
+			<h3>商品一覧</h3>
+				<table class="table table-hover table-inverse">
 					<% @products.each do |product| %>
 						<tr><!-- 写真 -->
 							<td><%= attachment_image_tag product, :product_image, :fill, 200, 200 %></td>
-							<td><!-- 商品名-->
-								<%= product.product_name %>
-							</td>
-							<td><!-- 価格-->
-								<td>¥<% price = product.unit_price * 1.1 %>
-								 <%= price.floor %></td>
-							</td>
+							<!-- 商品名-->
+							<td><%= product.product_name %></td>
+							<!-- 価格-->
+							<td>¥<% price = product.unit_price * 1.1 %><%= price.floor %></td>
 						</tr>
 					<% end %>
-				</tbody>
-			</table>
+				</table>
 		</div>
 	</div>
 </div>

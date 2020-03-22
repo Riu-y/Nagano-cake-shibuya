@@ -4,33 +4,33 @@
 <tr>
 	<td>登録情報  </td>
 	<td><%=link_to "編集する", edit_customers_customer_path %></td>
-	<td><%=link_to "パスワードを変更する", edit_customer_password_path%></td>
+	<td><%=link_to "パスワードを変更する", edit_customers_password_path%></td>
 </tr>
 
 <table>
 <tr>
 	<td>氏名</td>
-	<td><%= @customers.family_name%><%= @customers.first_name%></td>
+	<td><%= @customer.family_name%><%= @customer.first_name%></td>
 </tr>
 <tr>
 	<td>カナ</td>
-	<td><%= @customers.family_name_kana%><%= @customers.first_name_kana%></td>	
+	<td><%= @customer.family_name_kana%><%= @customer.first_name_kana%></td>	
 </tr>
 <tr>
 	<td>郵便番号</td>
-	<td><%= @customers.postal_code%></td>	
+	<td><%= @customer.postal_code%></td>	
 </tr>
 <tr>
 	<td>住所</td>
-	<td><%= @customers.address%></td>	
+	<td><%= @customer.address%></td>	
 </tr>
 <tr>
 	<td>電話番号</td>
-	<td><%= @customers.telephone_number%></td>	
+	<td><%= @customer.telephone_number%></td>	
 </tr>
 <tr>
 	<td>メールアドレス</td>
-	<td><%= @customers.email%></td>	
+	<td><%= @customer.email%></td>	
 </tr>
 </table>
 
