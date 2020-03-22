@@ -1,40 +1,39 @@
 <h1>商品編集画面</h1>
-<%= form_for(@product, url: admins_product_path) do |f| %>
-	<div>
-		<%= attachment_image_tag @product, :product_image, :fill, 100, 100 %>
+<div class="container">
+	<div class="row">
+		<%= form_for(@product, url: admins_product_path) do |f| %>
+			<div class="col-lg-4">
+				<%= attachment_image_tag @product, :product_image, :fill, 300, 200, fallback: "no_image.png", size:'300x200' %>
+				<%= f.attachment_field :product_image %>
+			</div>
+			<div class="col-lg-6">
+				<table class="table" id="none-border">
+					<tbody>
+						<tr>
+							<td>商品名</td>
+							<td><%= f.text_field :product_name, :size=>"43x2" %></td>
+						</tr>
+						<tr>
+							<td>商品説明</td>
+							<td><%= f.text_area :product_description, :size=>"43x8" %></td>
+						</tr>
+						<tr>
+							<td>ジャンル</td>
+							<td><%= f.collection_select(:genre_id, Genre.all, :id, :genre_name,:prompt => "選択してください") %></td>
+						</tr>
+						<tr>
+							<td>税抜価格</td>
+							<td><%= f.text_field :unit_price, :size=>"43x2" %><span>円</span></td>
+						</tr>
+						<tr>
+							<td>販売<br>
+							ステータス</td>
+							<td><%= f.select(:is_selling, [['販売中', true], ['売切', false]],:prompt => "選択してください") %></td>
+						</tr>
+					</tbody>
+				</table>
+				<%= f.submit "変更を保存", class: 'btn btn-info btn-lg' %>
+			</div>
+		<% end %>
 	</div>
-	<div>
-		<%= f.attachment_field :product_image %>
-	</div>
-
-	<div>
-		<label>商品名</label>
-		<%= f.text_field :product_name %>
-	</div>
-
-	<div>
-		<label>商品説明</label>
-		<%= f.text_area :product_description %>
-	</div>
-
-	<div>
-		<label>ジャンル</label>
-		<%= f.collection_select(:genre_id, Genre.all, :id, :genre_name) %>
-	</div>
-
-	<div>
-		<label>税抜価格</label>
-		<%= f.text_field :unit_price %>
-		<span>円</span>
-	</div>
-
-	<div>
-		<label>販売<br>
-		ステータス</label>
-		<%= f.select(:is_selling, [['販売中', true], ['売切', false]]) %>
-	</div>
-
-	<div>
-		<%= f.submit "変更を保存" %>
-	</div>
-<% end %>
+</div>
