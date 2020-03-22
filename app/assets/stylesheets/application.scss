@@ -17,8 +17,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+/* headerのデザインを変更する */
 header{
-	color:black;
+	color: black;
 	.navbar-left{
 		span{
 			font-size:20px;
@@ -27,20 +28,41 @@ header{
 	}
 }
 
-.body{
-	margin-top:51px;
+/* headerとbodyの間隔を開ける */
+body{
+	margin-top:25px;
 }
 
+/* 見出しの下の間隔を開ける */
+h1{
+	margin-bottom:50px;
+}
+
+/* テーブルの先頭の色を変更する */
 thead{
 	background-color: #dcdcdc;
 }
 
+/* テーブルの文字の大きさを変更する */
 th, td {
   font-size: 17px;
 }
 
-#customer td,
-#customer tr{
+/* 特定のテーブルの枠線を消す */
+#none-border td,
+#none-border tr{
 	border-style: none;
 }
+
+/*ページネーションのデザインを変更する*/
+.pagination>li>a {
+  border: none;     /*枠線をなくす*/
+  color: #696969;   /*文字の色を変える*/
+}
+
+/* 表示しているページ番号のデザインを変更する */
+.pagination>.active>a {
+  background: #93c9ff;     /*背景の色を変える*/
+}
+
 
