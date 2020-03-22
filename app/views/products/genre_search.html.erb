@@ -1,0 +1,31 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3">
+			<table>
+				<th>ジャンル検索</th>
+				<% @genres.each do |genre| %>
+					<tr>
+						<td><%= link_to genre.genre_name,genre_search_product_path(genre.id) %></td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
+		<div class="col-xs-9">
+			<h3><%= @genre.genre_name %>一覧</h3>
+			<table class="table table-hover table-inverse">
+				<% @products.each do |product| %>
+					<tr>
+						<!-- 写真 -->
+						<td><%= attachment_image_tag product, :product_image, :fill, 200, 200 %></td>
+						<!-- 商品名-->
+						<td><%= product.product_name %></td>
+						<!-- 価格-->
+						<td>¥<% price = product.unit_price * 1.1 %><%= price.floor %></td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
+</div>
+
+

@@ -1,0 +1,49 @@
+<h2>注文情報有力</h2>
+
+	<h3>支払方法</h3>
+		<%= form_for @order_detail, url: new_customers_customer_order_details_path do |f| %>
+
+			<div class= "form-group">
+				<%= f.radio_button :payment_method, :credit %><!-- ラジオボタンの使い方は合っているか？ -->
+				<%= f.label :payment_method, "クレジットカード" %>
+			</div>
+			<div class= "form-group">
+				<%= f.radio_button :payment_method, :bank_transfer %>
+				<%= f.label :payment_method, "銀行振込" %>
+			</div>
+
+	<h3>お届け先</h3>
+			<div class= "form-group">
+				<%= f.radio_button :full_address,:full_address %><!-- shipping_addressモデルでfulladdressを定義。これ有り？ -->
+				<%= f.label :, "ご自身の住所" %>
+				<%= @customer.full_address %>
+			</div>
+
+			<div class= "form-group">
+				<%= f.radio_button :full_address, :false %>
+				<!-- 注文履歴に残す配送先情報はfulladdressなどの名前で一つにまとめた方が良いか？それであればテーブルに定義必要 -->
+				<%= f.collection_select :shipping_address_id, shipping_full_address.all, :prompt => true %>
+				<%= f.label :flag_active, "登録済みの住所から選択" %>
+
+			</div>
+			<div class= "form-group">
+				<%= f.radio_button :shipping_addresses %><!-- dbのテーブル名で良いか？またこのフォームで入力したものが登録されるか？ -->
+				<%= f.label :shipping_addresses, "新しいお届け先" %>
+					<%= form_for @shipping_address, url:  customers_customer_shipping_addresses_path(@customer) do |f| %>
+					<div class="field">
+							<%= f.label :郵便番号（ハイフンなし） %>
+							<%= f.text_field :shipping_postal_code, autofocus: true, autocomplete:"", placeholder:"郵便番号" %>
+						</div>
+						<div class="field">
+							<%= f.label :住所 %>
+							<%= f.text_field :shipping_address, autofocus: true, autocomplete:"", placeholder:"住所" %>
+						</div>
+						<div class="field">
+							<%= f.label :宛名 %>
+							<%= f.text_field :shipping_name, autofocus: true, autocomplete:"", placeholder:"宛名" %>
+						</div>
+
+			</div>
+					<%= f.submit "確認画面に進む", class: "btn btn-primary" %>
+		<% end %>
+ </div>
