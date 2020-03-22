@@ -22,13 +22,23 @@ def create
   	end
 end
 def edit
-    @customer = Customer.find(params[:id])
+    @shipping_address = ShippingAddress.find(params[:id])
+    @shipping_address.save
+    @customer = current_customer
+
 end
 
 def update
-   @customer = Customer.find(params[:id])
-   @customer.update(customer_params)
-   redirect_to edit_customers_customer_path(@customer.id)
+   shipping_address = ShippingAddress.find(params[:id])
+   @customer = current_customer
+   shipping_address.update(shipping_address_params)
+   redirect_to root_path
+  end
+
+  def delete
+    @shipping_address = ShippingAddress.find(params[:id])
+    @shipping_address.destoy
+    redirect_to root_path
   end
 
 end
