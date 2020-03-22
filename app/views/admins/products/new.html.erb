@@ -1,8 +1,8 @@
-<h2>商品新規登録画面</h2>
 <div class="container">
 	<div class="row">
 		<%= form_for(@product, url: admins_products_path) do |f| %>
 			<div class="col-lg-4">
+				<h1>商品新規登録画面</h1>
 				<!-- ここの画像表示についてはjavascriptで画像プレビュー機能が必要かも -->
 				<%= attachment_image_tag @product, :product_image, :fill, 300, 200, fallback: "no_image.png", size:'300x200' %>
 				<%= f.label :product_image, "画像をアップロード", class: "image_input_btn" %>
