@@ -1,5 +1,10 @@
-<h2>ショッピングカート</h2>
-	<%= link_to  "カートを空にする" alldestroy_customers_customer_cart_path ,method: :alldestroy, class: "btn btn-danger" %>
+<div class="container">
+	<div class="row">
+		<h2>ショッピングカート</h2>
+		<div class="text-right">
+			<%= link_to  "カートを空にする",alldestroy_customers_customer_carts_path(@customer.id) ,method: :delete, class: "btn btn-danger" %>
+		</div><br>
+
 		<table class="table">
 			<thead>
 				<tr>
@@ -10,29 +15,38 @@
 					<th></th>
 				</tr>
 			</thead>
+
 			<tbody>
+				<% @add_price = 0 %>
+				<%= form_for [@customer, @cart],url:customers_customer_carts_path(current_customer.id),method: :patch do |f| %>
+					<% @carts.each do |cart| %>
+						<tr>
+							<!-- 商品名 -->
+							<td><%= cart.product.product_name %></td>
+							<!-- 単価(税込) -->
+							<td><%= cart.product.unit_price.to_s(:delimited) %>円</td>
+
+							<!-- 数量 -->
+							<%= f.hidden_field :product_id, :value => cart.product.id %>
+							<td><%= f.number_field :number, :value => cart.number %>
+							<%= f.submit "変更", class: "btn btn-primary" %></td>
+							<!-- 小計 -->
+							<td><%= (cart.product.unit_price * cart.number).to_s(:delimited) %>円</td>
+							<% @add_price = @add_price + (cart.product.unit_price * cart.number) %>
+							<!-- 削除ボタン -->
+							<td><%= link_to "削除する", customers_customer_carts_path(@customer.id), method: :delete, class: "btn btn-danger" %></td>
+						</tr>
+					<% end %>
+				<% end %>
 				<tr>
-					<!-- 商品名 -->
-					<td><%= attachment_image_tag @products,:product_image, :fill, 50, 50 %><%= @product.product_name %></td>
-					<!-- 単価(税込) -->
-					<td><% price = @product.unit_price * 1.1 %>
-							<%= price.floor %>(税込)</td>
-					<!-- 数量 -->
+					<td><%= link_to "買い物を続ける",products_path, class: "btn btn-success" %></td>
+					<!-- 合計金額 -->
 					<td></td>
-					<!-- 小計 -->
 					<td></td>
-					<!-- 削除ボタン -->
-					<td><%= link_to "削除する", customers_customer_cart, method: :destroy, class: "btn btn-danger" %></td>
+					<td>合計金額</td>
+					<td><%= @add_price.to_s(:delimited) %>円</td>
 				</tr>
 			</tbody>
-		</table>
-	<%= link_to "買い物を続ける",products_path, class: "btn btn-success" %>
-		<table>
-			<tr><!-- 合計金額 -->
-				<td>合計金額</td>
-				<td></td>
-			</tr>
-		</table>
-<%= form_for(@product) do |f| %>
-	<%= f.submit "情報入力に進む",class: "btn btn-success" %>
-<% end %>
+		</div>
+	</div>
+</div>
