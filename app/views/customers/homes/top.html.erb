@@ -1,37 +1,71 @@
 
 <div class="container">
-	<div class="row">
-
-
-
-<div class = "col-xs-3">
-
-<table class="table table-bordered">
-	
-	<thead>
-		<tr>
-			<th>ジャンル検索</th>
-		</tr>
-	</thead>
-
-	<tbody>
-		<% @genres.each do |genre| %>
-		<tr>
-			<th><%= link_to genre.genre_name,genre_search_product_path(genre.id) %></th>
-		</tr>
-    <% end %>
-	</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class = "col-xs-6">
-
-	<img src="assets/001.jpg" class="img-responsive" alt="サンプル画像">
-</div>
+　<div class="row">
+　　<div class = "col-xs-3">
+　　　<table class="table table-bordered">
+	　　<thead>
+		　　<tr>
+		　　　<th>ジャンル検索</th>
+	　　　　</tr>
+	　　</thead>
+		<tbody>
+		　<% @genres.each do |genre| %>
+		　　<tr>
+		　　　<th><%= link_to genre.genre_name,genre_search_product_path(genre.id) %></th>
+　　　　　　　</tr>
+		</tbody>
+    	　<% end %>
+	</table>
+	</div>
+　　　　<div class = "col-xs-1">
+　　　　</div>
+　　　　　<div class = "col-xs-6">
+	　　　　<img src="assets/001.jpg" class="img-responsive" alt="サンプル画像">
+	<h2>おすすめ商品</h2>
 </div>
 
 
 
+<div class="row">
+　<div class="col-xs-3">
+    <div class="thumbnail">
+      <img src="assets/009.jpg" alt="画像">
+      <div class="caption">
+        <h3>商品名</h3>
+        <p>コンテンツ</p>
+      </div>
+    </div>
+  </div>
+
+<div class="col-xs-3">
+    <div class="thumbnail">
+      <img src="assets/008.jpg" alt="画像">
+      <div class="caption">
+        <h3>商品名</h3>
+        <p>コンテンツ</p>
+      </div>
+    </div>
+  </div>
+
+<div class="col-xs-3">
+    <div class="thumbnail">
+      <img src="assets/007.jpg" alt="画像">
+      <div class="caption">
+        <h3>商品名</h3>
+        <p>コンテンツ</p>
+      </div>
+    </div>
+  </div>
+
+<div class="col-xs-3">
+    <div class="thumbnail">
+      <img src="assets/006.jpg" alt="画像">
+      <div class="caption">
+        <h3>商品名</h3>
+        <p>コンテンツ</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 
