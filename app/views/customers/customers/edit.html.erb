@@ -1,53 +1,49 @@
-<h2>登録情報編集</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+    <h2>登録情報編集</h2>
 
-<%= form_for(@customer,url: edit_customers_customer_path(@customer)) do |f| %>
+    <%= form_for(@customer,url: customers_customer_path(@customer)) do |f| %>
 
-  <div class="field">
-    <%= f.label :姓 %>
-    <%= f.text_field :family_name, autofocus: true, autocomplete:"", placeholder:"姓" %>
+      <table class="table" id="none-border">
+            <tbody>
+              <tr>
+                <td><%= f.label :氏名 %></td>
+                <td>(姓)<%= f.text_field :family_name %></td>
+                <td>(名)<%= f.text_field :first_name %></td>
+              </tr>
+              <tr>
+                <td><%= f.label :フリガナ %></td>
+                <td>(ｾｲ)<%= f.text_field :family_name_kana %></td>
+                <td>(ﾒｲ)<%= f.text_field :first_name_kana %></td>
+              </tr>
+              <tr>
+                <td><%= f.label :メールアドレス %></td>
+                <td><%= f.email_field :email %></td>
+              </tr>
+              <tr>
+                <td><%= f.label :郵便番号 %></td>
+                <td><%= f.text_field :postal_code %></td>
+              </tr>
+
+              <tr>
+                <td><%= f.label :住所 %></td>
+                <td><%= f.text_field :address, class: "form-control form-control-sm" %></td>
+              </tr>
+
+              <tr>
+                <td><%= f.label :電話番号 %></td>
+                <td><%= f.text_field :telephone_number %></td>
+              </tr>
+
+              <tr>
+                <td><%= f.submit "編集内容を保存する",class: "btn btn-primary col-lg-offset-9"%></td>
+                <td><%= link_to "退会する", delete_customers_customer_path(@customer.id),class: "btn btn-danger col-lg-offset-12" %></td>
+              </tr>
+            </tbody>
+          </table>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :名 %>
-    <%= f.text_field :first_name, autofocus: true, autocomplete:"", placeholder:"名" %>
-  </div>
+</div>
+</div>
 
-  <div class="field">
-    <%= f.label :姓（カナ） %>
-    <%= f.text_field :family_name_kana, autofocus: true, autocomplete:"", placeholder:"姓（カナ）" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :名（カナ） %>
-    <%= f.text_field :first_name_kana, autofocus: true, autocomplete:"", placeholder:"名（カナ）" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete:"", placeholder:"メールアドレス" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :郵便番号 %><br />
-    <%= f.text_field :postal_code, autofocus: true, autocomplete:"", placeholder:"郵便番号" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :住所 %><br />
-    <%= f.text_field :address, autofocus: true, autocomplete:"", placeholder:"住所" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :電話番号 %><br />
-    <%= f.text_field :telephone_number, autofocus: true, autocomplete:"",placeholder: "電話番号" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "編集内容を保存する" %>
-  </div>
-<% end %>
-
-
-
-
-
-<%= link_to "退会する", delete_customers_customer_path(@customer.id) %>
