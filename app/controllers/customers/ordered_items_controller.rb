@@ -1,3 +1,3 @@
-class OrderedItemsController < ApplicationController
+class Customers::OrderedItemsController < ApplicationController
 	layout 'customers'
 end
