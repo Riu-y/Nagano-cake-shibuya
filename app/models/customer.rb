@@ -5,4 +5,9 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
  has_many :shiping_address
+ has_many :order_details
+
+	def full_address
+		self.full_address = postal_code + address + family_name + first_name
+	end
 end

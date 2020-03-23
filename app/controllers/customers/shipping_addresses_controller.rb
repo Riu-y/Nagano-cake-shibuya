@@ -18,12 +18,12 @@ def create
   		#redirect_to customers_customer_shipping_addresses_path(@customer.id), notice: "successfully created book!"#保存された場合の移動先を指定。
   	else
   		@shipping_addresses = ShippingAddress.all
+      @customer = current_customer
   		render 'index'
   	end
 end
 def edit
     @shipping_address = ShippingAddress.find(params[:id])
-    @shipping_address.save
     @customer = current_customer
 
 end
@@ -31,14 +31,22 @@ end
 def update
    shipping_address = ShippingAddress.find(params[:id])
    @customer = current_customer
-   shipping_address.update(shipping_address_params)
-   redirect_to root_path
+   
+   
+      if shipping_address.update(shipping_address_params)
+      redirect_to customers_customer_shipping_addresses_path
+      #redirect_to customers_customer_shipping_addresses_path(@customer.id), notice: "successfully created book!"#保存された場合の移動先を指定。
+    else
+      @shipping_address = ShippingAddress.find(params[:id])
+      @customer = current_customer
+      render 'edit'
+    end
   end
 
-  def delete
+  def destroy
     @shipping_address = ShippingAddress.find(params[:id])
-    @shipping_address.destoy
-    redirect_to root_path
+    @shipping_address.destroy
+    redirect_to customers_customer_shipping_addresses_path
   end
 
 end

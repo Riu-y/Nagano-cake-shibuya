@@ -1,9 +1,7 @@
-<h1>&emsp;会員一覧画面</h1>
-<br>
-
 <div class="container">
 	<div class="row">
 		<div class="col-lg-10 col-lg-offset-1">
+			<h1>会員一覧画面</h1>
 			<div class = "customer-list">
 				<table class="table">
 					<thead>
@@ -32,6 +30,7 @@
 							</tr>
 						<% end %>
 					</tbody>
+					<td><%= paginate @customers %><td>
 				</table>
 			</div>
 		</div>
