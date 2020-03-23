@@ -42,7 +42,7 @@
 					<table class="table" id="none-border">
 						<tr>
 							<td>配送先</td>
-							<td><%=link_to "一覧を見る", new_customer_session_path, class: 'btn btn-primary btn-sm'%></td>
+							<td><%=link_to "一覧を見る", customers_customer_shipping_addresses_path(@customer.id), class: 'btn btn-primary btn-sm'%></td>
 						</tr>
 						<tr>
 							<td>注文履歴</td>

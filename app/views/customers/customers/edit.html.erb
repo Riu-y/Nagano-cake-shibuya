@@ -3,7 +3,7 @@
     <div class="col-lg-8">
     <h2>登録情報編集</h2>
 
-    <%= form_for(@customer,url: edit_customers_customer_path(@customer)) do |f| %>
+    <%= form_for(@customer,url: customers_customer_path(@customer)) do |f| %>
 
       <table class="table" id="none-border">
             <tbody>
@@ -12,13 +12,11 @@
                 <td>(姓)<%= f.text_field :family_name %></td>
                 <td>(名)<%= f.text_field :first_name %></td>
               </tr>
-
               <tr>
                 <td><%= f.label :フリガナ %></td>
                 <td>(ｾｲ)<%= f.text_field :family_name_kana %></td>
                 <td>(ﾒｲ)<%= f.text_field :first_name_kana %></td>
               </tr>
-
               <tr>
                 <td><%= f.label :メールアドレス %></td>
                 <td><%= f.email_field :email %></td>
