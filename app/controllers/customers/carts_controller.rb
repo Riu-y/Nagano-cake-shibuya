@@ -28,7 +28,7 @@ class Customers::CartsController < ApplicationController
 	def destroy
 		@customer = Customer.find(params[:customer_id])
 		@cart = Cart.find_by(params[:product_id])
-		@cart.destory
+		@cart.destroy
 		redirect_to customers_customer_carts_path(@customer.id)
 	end
 
