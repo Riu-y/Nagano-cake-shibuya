@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
 	attachment :product_image
+	mount_uploader :product_image, ProductImageUploader
 	belongs_to :genre
 	has_many :ordered_items
 	has_many :carts, dependent: :destroy

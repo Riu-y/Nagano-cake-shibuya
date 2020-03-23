@@ -3,10 +3,13 @@
 		<%= form_for(@product, url: admins_products_path) do |f| %>
 			<div class="col-lg-4">
 				<h1>商品新規登録画面</h1>
-				<!-- ここの画像表示についてはjavascriptで画像プレビュー機能が必要かも -->
-				<%= attachment_image_tag @product, :product_image, :fill, 300, 200, fallback: "no_image.png", size:'300x200' %>
-				<%= f.label :product_image, "画像をアップロード", class: "image_input_btn" %>
-				<%= f.attachment_field :product_image, class: 'btn btn-info btn-file btn-sm image_form' %>
+				<% if @product.product_image.present? %>
+				  <%= image_tag @product.product_image, id: :img_prev %>
+				<% else %>
+				  <%= image_tag "no_image.png", id: :img_prev, size:'300x200' %>
+				<% end %>
+				<%= f.label :product_image, "画像選択", class: "image_input_btn btn-info btn-sm col-sm-offset-2"%>
+				<%= f.file_field :product_image, style: 'display: none' %>
 			</div>
 			<div class="col-lg-6">
 				<table class="table" id="none-border">
@@ -34,7 +37,7 @@
 						</tr>
 					</tbody>
 				</table>
-				<%= f.submit "新規登録", class: 'btn btn-info btn-lg' %>
+				<%= f.submit "新規登録", class: 'btn btn-info btn-lg col-lg-offset-12' %>
 			</div>
 		<% end %>
 	</div>
