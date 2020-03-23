@@ -9,6 +9,6 @@
 <center>
 
 <tr>
-	<td>退会しない</td>
-	<td><%= link_to "退会する", active_false_customers_customer_path(@customer.id) ,method: :patch %></td>
+	<td><%=link_to "退会しない", products_path, class: 'btn btn-primary' %></td>
+	<td><%= link_to "退会する", active_false_customers_customer_path(@customer.id),class: "btn btn-danger" ,method: :patch %></td>
 </tr>
