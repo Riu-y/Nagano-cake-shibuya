@@ -67,6 +67,8 @@ gem 'ransack'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 
+
 gem 'kaminari'
 gem 'carrierwave', '~> 1.0'
 gem 'pry-byebug'
+gem 'kaminari'
