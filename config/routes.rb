@@ -43,7 +43,7 @@ namespace :customers do
 		end
 	end
 	resources :ordered_items, only:[:index, :show]
-	resource :carts, only:[:show, :update, :destroy]do
+	resource :carts, only:[:show, :update, :destroy, :create]do
 		member do
 			delete :alldestroy, as: :alldestroy
 		end
