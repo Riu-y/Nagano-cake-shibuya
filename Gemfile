@@ -69,3 +69,4 @@ gem 'jquery-rails'
 
 gem 'kaminari'
 gem 'carrierwave', '~> 1.0'
+gem 'pry-byebug'
