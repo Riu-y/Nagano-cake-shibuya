@@ -1,0 +1,58 @@
+<div class="container">
+	<div class="row">
+		<h2>ショッピングカート</h2>
+		<div class="text-right">
+			<%= link_to  "カートを空にする",alldestroy_customers_customer_carts_path(@customer.id) ,method: :delete, class: "btn btn-danger" %>
+		</div><br>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>商品名</th>
+					<th>単価(税込)</th>
+					<th>数量</th>
+					<th>小計</th>
+					<th></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% @add_price = 0 %>
+				<%= form_for [@customer, @cart],url:customers_customer_carts_path(current_customer.id),method: :patch do |f| %>
+					<% @carts.each do |cart| %>
+						<tr>
+							<!-- 商品名 -->
+							<td><%= cart.product.product_name %></td>
+							<!-- 単価(税込) -->
+							<td><%= cart.product.unit_price.to_s(:delimited) %>円</td>
+
+							<!-- 数量 -->
+							<%= f.hidden_field :product_id, :value => cart.product.id %>
+							<td><%= f.number_field :number, :value => cart.number %>
+							<%= f.submit "変更", class: "btn btn-primary" %></td>
+							<!-- 小計 -->
+							<td><%= (cart.product.unit_price * cart.number).to_s(:delimited) %>円</td>
+							<% @add_price = @add_price + (cart.product.unit_price * cart.number) %>
+							<!-- 削除ボタン -->
+						</tr>
+					<% end %>
+				<% end %>
+				<tr>
+			</tbody>
+		</div>
+		</table>
+		<table>
+				<tr>
+					<!-- 合計金額 -->
+					<td>送料</td>
+					<td></td>
+					<td>合計金額</td>
+					<td><%= @add_price.to_s(:delimited) %>円</td>
+					<td>請求金額</td>
+					<td></td>
+				</tr>
+			</div>
+		</table>
+	</div>
+</div>
+
