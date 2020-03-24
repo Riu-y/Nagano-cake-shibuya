@@ -4,7 +4,6 @@
 	<title>NaganoCakeShibuya</title>
 	<%= csrf_meta_tags %>
 	<%= csp_meta_tag %>
-
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
@@ -21,7 +20,7 @@
 					<% if customer_signed_in? %>
 						<li><%= link_to "マイページ", customers_customer_path(current_customer.id) %></li>
 						<li><%= link_to "商品一覧", products_path %></li>
-						<li><%= link_to "カート", customers_customer_carts_path(current_customer.id) %></li>
+						<li><%= link_to "カート", customers_customer_carts_path(current_customer.id),data: {:turbolinks => "false"} %></li>
 						<li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
 					<% else %>
 						<li><%= link_to "商品一覧", products_path %></li>
@@ -32,7 +31,6 @@
 			</nav>
 		</div>
 	</header>
-	<br><br><br><br>
 	<%= yield %>
 </body>
 </html>

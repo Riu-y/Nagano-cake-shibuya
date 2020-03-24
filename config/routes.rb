@@ -31,24 +31,21 @@ end
 
 
 namespace :customers do
-	resources :customers, only:[:show, :edit, :update,]do
+	resources :customers, only:[:show, :edit, :update]do
 		member do
 			get :delete, as: :delete
 			patch :active_false, as: :active_false
 		end
-	resource :order_details, only:[:new, :create, :complete]do
-		member do
-			get :check, as: :check
-			get :complete, as: :complete
+		resource :order_details, only:[:new, :create, :complete]do
+			member do
+				get :check, as: :check
+				get :complete, as: :complete
+			end
 		end
-	end
-	resources :ordered_items, only:[:index, :show]
-	resource :carts, only:[:show, :update, :destroy, :create]do
-		member do
-			delete :alldestroy, as: :alldestroy
-		end
-	end
-	resources :shipping_addresses, only:[:index, :create, :edit, :update, :destroy]
+		resources :ordered_items, only:[:index, :show]
+		resources :carts, only:[:index, :update, :destroy, :create]
+	    delete '/customers/customers/:customer_id/cart_alldestroy' => 'carts#alldestroy', as: :alldestroy
+		resources :shipping_addresses, only:[:index, :create, :edit, :update, :destroy]
 	end
 	root 'homes#top'
 end

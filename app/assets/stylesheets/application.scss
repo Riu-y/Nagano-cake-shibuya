@@ -30,7 +30,7 @@ header{
 
 /* headerとbodyの間隔を開ける */
 body{
-	margin-top:25px;
+	margin-top:100px;
 }
 
 /* 見出しの下の間隔を開ける */
@@ -52,6 +52,12 @@ th, td {
 #none-border td,
 #none-border tr{
 	border-style: none;
+}
+
+/* 特定のテーブルの文字を大きくする */
+#big-size td,
+#big-size tr{
+	font-size: 35px;
 }
 
 /*ページネーションのデザインを変更する*/
