@@ -1,10 +1,21 @@
 <div class="container">
   <div class="row">
     <div class="col-6">
-
       <h1>会員編集画面</h1>
 
+      <% if @customer.errors.any? %>
+          <div class="alert alert-danger">
+            <ul>
+              <p><%= @customer.errors.count %> error</p>
+            <% @customer.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+      <% end %>
+
       <%= form_for(@customer,url: admins_customer_path(@customer)) do |f| %>
+
       <table class="table" id="none-border">
         <tbody>
           <tr>

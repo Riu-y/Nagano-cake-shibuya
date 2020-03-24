@@ -3,38 +3,50 @@
 		<%= form_for(@product, url: admins_products_path) do |f| %>
 			<div class="col-lg-4">
 				<h1>商品新規登録画面</h1>
+
+				<% if @product.errors.any? %>
+			        <div class="alert alert-danger">
+			          <ul>
+			            <p><%= @product.errors.count %> error</p>
+			          	<% @product.errors.full_messages.each do |msg| %>
+			          	<li><%= msg %></li>
+			          <% end %>
+			          </ul>
+			        </div>
+			      <% end %>
+
 				<%= attachment_image_tag @product, :product_image, :fill, 300, 200, fallback: "no_image.png", size:'300x200' %>
 				<%= f.label :product_image, "画像をアップロード", class: "image_input_btn btn-info btn-sm col-sm-offset-2" %>
 				<%= f.attachment_field :product_image, style: "display: none;" %>
-			</div>
-			<div class="col-lg-6">
-				<table class="table" id="none-border">
-					<tbody>
-						<tr>
-							<td>商品名</td>
-							<td><%= f.text_field :product_name, :size=>"43x2" %></td>
-						</tr>
-						<tr>
-							<td>商品説明</td>
-							<td><%= f.text_area :product_description, :size=>"43x8" %></td>
-						</tr>
-						<tr>
-							<td>ジャンル</td>
-							<td><%= f.collection_select(:genre_id, Genre.all, :id, :genre_name,:prompt => "選択してください") %></td>
-						</tr>
-						<tr>
-							<td>税抜価格</td>
-							<td><%= f.text_field :unit_price, :size=>"43x2" %><span>円</span></td>
-						</tr>
-						<tr>
-							<td>販売<br>
-							ステータス</td>
-							<td><%= f.select(:is_selling, [['販売中', true], ['販売停止中', false]],:prompt => "選択してください") %></td>
-						</tr>
-					</tbody>
-				</table>
-				<%= f.submit "新規登録", class: 'btn btn-info btn-lg col-lg-offset-12' %>
-			</div>
+				</div>
+				<div class="col-lg-6">
+					<table class="table" id="none-border">
+						<tbody>
+							<tr>
+								<td>商品名</td>
+								<td><%= f.text_field :product_name, :size=>"43x2" %></td>
+							</tr>
+							<tr>
+								<td>商品説明</td>
+								<td><%= f.text_area :product_description, :size=>"43x8" %></td>
+							</tr>
+							<tr>
+								<td>ジャンル</td>
+								<td><%= f.collection_select(:genre_id, Genre.all, :id, :genre_name,:prompt => "選択してください") %></td>
+							</tr>
+							<tr>
+								<td>税抜価格</td>
+								<td><%= f.text_field :unit_price, :size=>"43x2" %><span>円</span></td>
+							</tr>
+							<tr>
+								<td>販売<br>
+								ステータス</td>
+								<td><%= f.select(:is_selling, [['販売中', true], ['販売停止中', false]],:prompt => "選択してください") %></td>
+							</tr>
+						</tbody>
+					</table>
+					<%= f.submit "新規登録", class: 'btn btn-info btn-lg col-lg-offset-12' %>
+				</div>
 		<% end %>
 	</div>
 </div>
