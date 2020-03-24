@@ -16,8 +16,7 @@ class Admins::ProductsController < ApplicationController
 		if @product.save
 			redirect_to admins_product_path(@product.id)
 		else
-			@products = Product.all
-			render action: :index
+			render action: :new
 		end
 	end
 
@@ -32,8 +31,11 @@ class Admins::ProductsController < ApplicationController
 
 	def update
 		@product = Product.find(params[:id])
-		@product.update(product_params)
-		redirect_to admins_product_path(@product.id)
+		if @product.update(product_params)
+			redirect_to admins_product_path(@product.id)
+		else
+			render action: :edit
+		end
 	end
 
 	private
