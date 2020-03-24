@@ -10,7 +10,9 @@ class Customers::OrderDetailsController < ApplicationController
 
 
 	def check
-
+		@carts = Cart.all
+		@customer = current_customer
+		@order_detail = OrderDetail.find_by(customer_id: current_customer.id, id: params[:id])
 	end
 
 	def create
@@ -43,10 +45,11 @@ class Customers::OrderDetailsController < ApplicationController
 			@order_detail.shipping_name = @shipping_address.name
 
 
+
 		end
 
 		if @order_detail.save
-			redirect_to products_path
+			redirect_to check_customers_customer_order_detail_path(current_customer.id,@order_detail.id)
 		else
 			redirect_back(fallback_location: customers_customer_path(current_customer.id))
 		end
