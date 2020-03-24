@@ -1,43 +1,47 @@
 class Customers::CartsController < ApplicationController
 	layout 'customers'
 	def create
-		@customer = Customer.find(params[:customer_id])
-		@cart = Cart.new(cart_params)
-		@cart.customer_id = current_customer.id
-		if @cart.save
+		@cart = Cart.find_by(customer_id: current_customer.id, product_id: params[:cart][:product_id])
+		# 同じ商品が入っている場合は追加しない
+		if @cart.present?
 			redirect_to customers_customer_carts_path(current_customer.id)
 		else
-			redirect_to products_path
+			@cart = Cart.new(cart_params)
+			@cart.customer_id = current_customer.id
+			@cart.save
+			redirect_to customers_customer_carts_path(current_customer.id)
 		end
 	end
 
-	def show
-		@customer = Customer.find(params[:customer_id])
+	def index
+		@customer = current_customer
 		@carts = Cart.all
 		@cart = Cart.new
-
 	end
 
 	def update
-		@customer = Customer.find(params[:customer_id])
-		@cart = Cart.find_by(params[:product_id])
+		@customer = current_customer
+		@cart = Cart.find_by(customer_id: @customer.id,id: params[:id])
+		# binding.pry
 		@cart.update(cart_params)
-		redirect_to products_path
+		redirect_to customers_customer_carts_path(current_customer.id)
 	end
 
 	def destroy
-		@customer = Customer.find(params[:customer_id])
-		@cart = Cart.find_by(params[:product_id])
+		@customer = current_customer
+		@cart = Cart.find_by(customer_id: @customer.id,id: params[:id])
 		@cart.destroy
 		redirect_to customers_customer_carts_path(@customer.id)
 	end
 
 	def alldestroy
-		@customer = Customer.find(params[:customer_id])
+		@customer = current_customer
 		@carts = Cart.all
 		@carts.destroy_all
 		redirect_to customers_customer_carts_path(@customer.id)
 	end
+
+	private
 
 	def cart_params
   		params.require(:cart).permit(:number,:product_id)
