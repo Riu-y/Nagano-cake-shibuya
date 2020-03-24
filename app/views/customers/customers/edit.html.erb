@@ -3,16 +3,7 @@
     <div class="col-lg-8">
     <h2>登録情報編集</h2>
 
-    <% if @customer.errors.any? %>
-        <div class="alert alert-danger">
-          <ul>
-            <p><%= @customer.errors.count %> error</p>
-          <% @customer.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-          </ul>
-        </div>
-      <% end %>
+    <%= render 'layouts/error_messages', model: @customer %>
 
     <%= form_for(@customer,url: customers_customer_path(@customer)) do |f| %>
 

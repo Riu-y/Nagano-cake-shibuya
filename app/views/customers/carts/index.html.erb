@@ -31,7 +31,7 @@
 							<td><%= @unit_price.to_s(:delimited)%>円</td>
 
 							<!-- 数量 -->
-							<td><%= f.number_field :number, :value => cart.number %>
+							<td><%= f.number_field :number,min:1, max:100, step: 1, :value => cart.number %>
 							<%= f.submit "変更", class: "btn btn-primary",data: {:turbolinks => "false"} %></td>
 							<!-- 小計 -->
 							<% @subtotal = ((cart.product.unit_price * cart.number * 1.1).floor) %>

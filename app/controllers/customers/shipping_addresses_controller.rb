@@ -31,23 +31,21 @@ end
 def update
    shipping_address = ShippingAddress.find(params[:id])
    @customer = current_customer
-   
-   
-      if shipping_address.update(shipping_address_params)
-      redirect_to customers_customer_shipping_addresses_path
+   if shipping_address.update(shipping_address_params)
+    redirect_to customers_customer_shipping_addresses_path
       #redirect_to customers_customer_shipping_addresses_path(@customer.id), notice: "successfully created book!"#保存された場合の移動先を指定。
     else
       @shipping_address = ShippingAddress.find(params[:id])
       @customer = current_customer
       render 'edit'
     end
-  end
+end
 
-  def destroy
-    @shipping_address = ShippingAddress.find(params[:id])
-    @shipping_address.destroy
-    redirect_to customers_customer_shipping_addresses_path
-  end
+def destroy
+  @shipping_address = ShippingAddress.find(params[:id])
+  @shipping_address.destroy
+  redirect_to customers_customer_shipping_addresses_path
+end
 
 end
 
