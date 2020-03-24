@@ -16,14 +16,17 @@
 		</tr>
 		</thead>
 		<tbody>
+			<% @order_details.each do |order| %>
 		<tr>
-			<th>あ</th>
-			<th>あ</th>
-			<th>あ</th>
-			<th>あ</th>
-			<th>あ</th>
+			<th><%= order.created_at%></th>
+			<th><%= order.shipping_address%></th>
+			<th></th>
+			<th><%= order.total_fee%></th>
+			<th><%= order.order_stauts%></th>
+			<th></th>
 			<th><%= link_to "表示する",customers_root_path, class: "btn btn-info edit_book" %></th>
 		</tr>
 		</tbody>
 		</table>
 	</div>
+    <% end %>
