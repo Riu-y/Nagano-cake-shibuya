@@ -4,12 +4,12 @@ class Customers::CartsController < ApplicationController
 		@cart = Cart.find_by(customer_id: current_customer.id, product_id: params[:cart][:product_id])
 		# 同じ商品が入っている場合は追加しない
 		if @cart.present?
-			redirect_to customers_customer_carts_path(current_customer.id)
+			redirect_to customers_customer_carts_path(current_customer.id),alert:"選択した商品はすでにカートに入っています。"
 		else
 			@cart = Cart.new(cart_params)
 			@cart.customer_id = current_customer.id
 			@cart.save
-			redirect_to customers_customer_carts_path(current_customer.id)
+			redirect_to customers_customer_carts_path(current_customer.id),notice:"商品をカートに追加しました。"
 		end
 	end
 

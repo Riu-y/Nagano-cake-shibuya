@@ -19,4 +19,9 @@ class Customer < ApplicationRecord
 	def full_address
 		self.full_address = postal_code + address + family_name + first_name
 	end
+
+	def active_for_authentication?
+    	super && (self.is_acctive == true)
+  	end
+
 end

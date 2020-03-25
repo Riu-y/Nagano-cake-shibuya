@@ -26,8 +26,8 @@ class Customers::CustomersController < ApplicationController
 		@customer = Customer.find(params[:id])
 		@customer.is_acctive = false
 		@customer.save
-		puts @customer.is_acctive
-		redirect_to edit_customers_customer_path(@customer.id)
+		reset_session
+		redirect_to customers_root_path
 	end
 
 
