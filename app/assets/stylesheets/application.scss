@@ -19,7 +19,6 @@
 
 /* headerのデザインを変更する */
 header{
-	color: black;
 	background-color:pink;
 	.navbar-left{
 		span{
@@ -28,11 +27,21 @@ header{
 			color:white;
 		}
 	}
+	.navbar-right{
+		font-size:18px;
+		margin-top:25px;
+		color:white;
+		#welcome{
+			font-size:20px;
+			padding-top:11px;
+			padding-right:100px
+		}
+	}
 }
 
 /* headerとbodyの間隔を開ける */
 body{
-	margin-top:100px;
+	margin-top:150px;
 }
 
 /* 見出しの下の間隔を開ける */

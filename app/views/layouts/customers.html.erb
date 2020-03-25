@@ -18,14 +18,15 @@
 			<nav>
 				<ul class="nav navbar-nav navbar-right">
 					<% if customer_signed_in? %>
-						<li><%= link_to "マイページ", customers_customer_path(current_customer.id),:style=>"color:white;" %></li>
-						<li><%= link_to "商品一覧", products_path,:style=>"color:white;" %></li>
-						<li><%= link_to "カート", customers_customer_carts_path(current_customer.id),:style=>"color:white;",data: {:turbolinks => "false"} %></li>
-						<li><%= link_to "ログアウト", destroy_customer_session_path,:style=>"color:white;", method: :delete %></li>
+						<li id = "welcome"><%="ようこそ#{current_customer.family_name}さん！"%></li>
+						<li><%= link_to "マイページ", customers_customer_path(current_customer.id),:style=>"color:white;", class: 'glyphicon glyphicon-user'%></li>
+						<li><%= link_to "商品一覧", products_path,:style=>"color:white;",class: "glyphicon glyphicon-gift" %></li>
+						<li><%= link_to "カート", customers_customer_carts_path(current_customer.id),:style=>"color:white;",class: 'glyphicon glyphicon-shopping-cart' ,data: {:turbolinks => "false"} %></li>
+						<li><%= link_to "ログアウト", destroy_customer_session_path,class: 'glyphicon glyphicon-log-out',:style=>"color:white;", method: :delete %></li>
 					<% else %>
-						<li><%= link_to "商品一覧", products_path,:style=>"color:white;"  %></li>
-						<li><%= link_to "新規登録", new_customer_registration_path,:style=>"color:white;"  %></li>
-						<li><%= link_to "ログイン", new_customer_session_path,:style=>"color:white;"  %></li>
+						<li><%= link_to "商品一覧", products_path,:style=>"color:white;",class: "glyphicon glyphicon-gift"  %></li>
+						<li><%= link_to "新規登録", new_customer_registration_path,:style=>"color:white;",class: "glyphicon glyphicon-pencil"   %></li>
+						<li><%= link_to "ログイン", new_customer_session_path,:style=>"color:white;",class: 'glyphicon glyphicon-log-in' %></li>
 					<% end %>
 				</ul>
 			</nav>
@@ -43,6 +44,12 @@
     		<%= flash[:alert] %>
   		</div>
 	<% end %>
+
+	<% if flash[:error] %>
+      <div class="alert alert-danger">
+        <%= flash[:error] %>
+      </div>
+  	<% end %>
 
 	<%= yield %>
 </body>
