@@ -20,10 +20,12 @@
 /* headerのデザインを変更する */
 header{
 	color: black;
+	background-color:pink;
 	.navbar-left{
 		span{
-			font-size:20px;
+			font-size:35px;
 			padding-top:10px;
+			color:white;
 		}
 	}
 }
