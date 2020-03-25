@@ -1,44 +1,42 @@
-<h2>Sign up</h2>
+<h2>新規会員登録</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-
+   
   <div class="field">
-    <%= f.label :姓 %>
+   <tr><th>名前</th><td> <%= f.label :姓 %>
     <%= f.text_field :family_name, autofocus: true, autocomplete:"", placeholder:"姓" %>
-  </div>
-　<div class="field">
-    <%= f.label :名 %>
+       <%= f.label :名　%>
     <%= f.text_field :first_name, autofocus: true, autocomplete:"", placeholder:"名" %>
+    </td></tr>
   </div>
+　
 
   <div class="field">
-    <%= f.label :姓（カナ） %>
+<tr><th>名前</th><td> <%= f.label :（セイ） %>
     <%= f.text_field :family_name_kana, autofocus: true, autocomplete:"", placeholder:"姓（カナ）" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :名（カナ） %>
+    <%= f.label :（メイ） %>
     <%= f.text_field :first_name_kana, autofocus: true, autocomplete:"", placeholder:"名（カナ）" %>
+    </td></tr>
   </div>
 
   <div class="field">
-    <%= f.label :メールアドレス %><br />
+    <%= f.label :メールアドレス %>
     <%= f.email_field :email, autofocus: true, autocomplete:"", placeholder:"メールアドレス" %>
   </div>
 
   <div class="field">
-    <%= f.label :郵便番号 %><br />
+    <%= f.label :郵便番号 %>
     <%= f.text_field :postal_code, autofocus: true, autocomplete:"", placeholder:"郵便番号" %>
   </div>
 
   <div class="field">
-    <%= f.label :住所 %><br />
+    <%= f.label :住所 %>
     <%= f.text_field :address, autofocus: true, autocomplete:"", placeholder:"住所" %>
   </div>
 
   <div class="field">
-    <%= f.label :電話番号 %><br />
+    <%= f.label :電話番号 %>
     <%= f.text_field :telephone_number, autofocus: true, autocomplete:"",placeholder: "電話番号" %>
   </div>
 
@@ -46,14 +44,14 @@
     <%= f.label :パスワード %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+    <% end %>
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
 
 
   <div class="field">
-    <%= f.label :パスワード（確認用） %><br />
+    <%= f.label :パスワード（確認用） %>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 

@@ -72,3 +72,44 @@ th, td {
 }
 
 
+
+/* ずれの修正のためのcss */
+.list-group-item{
+	margin-top: -20px;
+}
+/* ずれの修正のためのcss */
+.col-xs-3:nth-child(4){
+	margin-top:-20px;
+}
+/* ずれの修正のためのcss */
+.col-lg-8{
+	.aaaa{
+	margin-top: -20px;
+	}
+
+}
+.col-lg-8 p{
+    position: absolute; 
+  top: 55%;
+  left: 50%;
+  text-align:center;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);  
+  font-weight: bold; /*太字に*/
+  font-size: 2em;/*サイズ2倍*/
+  width :1000px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
