@@ -6,6 +6,7 @@ class Customer < ApplicationRecord
 
 	 has_many :shiping_address
 	 has_many :order_details
+	 has_many :carts
 
 	 validates :family_name, presence: true
 	 validates :first_name, presence: true

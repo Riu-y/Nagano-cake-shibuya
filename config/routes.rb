@@ -40,6 +40,7 @@ namespace :customers do
 			member do
 				get :check, as: :check
 				get :complete, as: :complete
+				post :finish, as: :finish
 			end
 		end
 		resources :ordered_items, only:[:index, :show]

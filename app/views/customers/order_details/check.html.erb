@@ -35,13 +35,22 @@
 						<% end %>
 				</tbody>
 			</table>
-			<strong>支払い方法:</strong><%= @order_detail.payment_method %>
+			<h4><strong>支払い方法:</strong><%= @order_detail.payment_method %></h4>
 			<br>
-			<strong>住所:</strong><%= @order_detail.shipping_postal_code%><%=@order_detail.shipping_address%>
+			<h4><strong>配送先住所:</strong><%= @order_detail.shipping_postal_code%><%=@order_detail.shipping_address%></h4>
 			<br>
-			<strong>名前:</strong><%= @order_detail.shipping_name %>
+			<h4><strong>配送先名前:</strong><%= @order_detail.shipping_name %></h4>
+<!-- 注文処理 -->
+				<div class="field">
+				<%= form_with model: @order_detail, url: customers_customer_order_details_path(@customer),data: {remote: false} do |f| %>
+					<%= f.hidden_field :subtotal, value: @subtotal %>
+					<%= f.hidden_field :total_fee, value: @total_fee %>
+					<%= f.hidden_field :number, value: @number %>
+					<%= f.hidden_field :purchase_price, value: @total_fee %>
+					<%end%>
+				</div>
 
-			<%=link_to "注文を確定する",complete_customers_customer_order_detail_path(current_customer.id,@order_detail.id),class: "btn btn-success"%>
+			<%=link_to "注文を確定する",complete_customers_customer_order_detail_path(current_customer.id,@order_detail.id), class: "btn btn-success"%>
 
 		</div>
 
@@ -49,7 +58,7 @@
 			<table class="table">
 				<tr>
 					<td>送料</td>
-					<td><%= @add_price.to_s(:delimited) %>円</td>
+					<td><%= @order_detail.shipping_fee %>円</td>
 				</tr>
 
 				<tr>
@@ -59,10 +68,12 @@
 
 				<tr>
 					<td>請求金額</td>
-					<td><%= @add_price.to_s(:delimited)%>円</td>
+					<% price = @add_price + @order_detail.shipping_fee %>
+					<td><%= price.to_s(:delimited) %>円</td>
 				</tr>
 			</table>
 		</div>
 	</div>
 </div>
+
 

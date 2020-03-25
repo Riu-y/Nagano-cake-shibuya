@@ -23,7 +23,7 @@
 			<div class= "form-group">
 				<%= radio_button_tag( 'select_address' , '登録済み住所から選択' ) %>
 				<%= f.label :shipping_addresses, "登録済みの住所から選択" %><br>
-				<%= collection_select(:detail,:shipping_address_id, ShippingAddress.all,:full_address,:id) %>
+				<%= collection_select(:detail,:shipping_address_id, ShippingAddress.all,:id,:full_address) %>
 				<!-- 偽装モデル(:detail)を作成して、(shipping_address_id)を代入 -->
 			</div>
 
