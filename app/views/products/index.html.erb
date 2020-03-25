@@ -26,13 +26,13 @@
 							<br>
 							<!-- 商品名-->
 							<%= product.product_name %>
-								<% if product.is_selling == false %>
-									&emsp;<span class="bg-danger">売り切れ</span>
-								<% end %>
 							<br>
 							<!-- 価格-->
 							¥<% price = product.unit_price * 1.1 %>
 							<%= price.floor.to_s(:delimited) %>
+							<% if product.is_selling == false %>
+								&emsp;<span class="bg-danger">売り切れ</span>
+							<% end %>
 						<% end %>
 					</td>
 					<!-- 4つ毎に改行 -->
