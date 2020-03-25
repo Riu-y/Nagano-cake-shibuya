@@ -16,9 +16,9 @@ class Customers::SessionsController < Devise::SessionsController
     # end
 
   # DELETE /resource/sign_out
-    # def after_sign_out_path_for(resource)
-    #   new_customers_session_path
-    # end
+    def after_sign_out_path_for(resource)
+      customers_root_path
+    end
 
   protected
 
@@ -26,7 +26,7 @@ class Customers::SessionsController < Devise::SessionsController
     @customer = Customer.find_by(email: params[:customer][:email].downcase)
     if @customer
       if (@customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false))
-        flash[:error] = "退会済みです。"
+        flash[:error] = "退会済みユーザーです。"
         redirect_to new_customer_session_path
       end
     end
@@ -37,3 +37,4 @@ class Customers::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 end
+
