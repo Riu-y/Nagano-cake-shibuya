@@ -14,11 +14,9 @@
 
       <tr>
         <td><%= f.label :パスワード %></td>
-        <td><%= f.password_field :password, autocomplete: "current-password", class: "form-control" %></td>
-      </tr>
-
-      <tr>
-        <%=link_to "=>パスワードを忘れた方はこちら", edit_customer_password_path %>
+        <td><%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+          <%=link_to "=>パスワードを忘れた方はこちら", edit_customer_password_path %>
+        </td>
       </tr>
 
       <tr>
