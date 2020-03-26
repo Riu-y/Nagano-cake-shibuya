@@ -50,7 +50,7 @@ h1{
 }
 
 /* テーブルの先頭の色を変更する */
-thead{
+thead,{
 	background-color: #dcdcdc;
 }
 
@@ -112,6 +112,20 @@ th, td {
   width :1000px;
   }
 
+.back-gray{
+	background-color: #dcdcdc;
+	font-size:30px;
+	width :270px;
+	height:40px;
+	padding-top:5px;
+	border-radius:5px;
+	text-align:center
+	}
+
+.form-group{
+	font-size:20px;
+	margin-left:25px;
+}
 
 
 
