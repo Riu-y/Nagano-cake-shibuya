@@ -12,4 +12,9 @@ class OrderDetail < ApplicationRecord
     bank_transfer: 0, #銀行振込
     credit: 1, #クレジット払い
   }
+
+  validates :payment_method, presence: true
+  # validates :shipping_postal_code, presence: true
+  # validates :shipping_address, presence: true
+  # validates :shipping_name, presence: true
 end
