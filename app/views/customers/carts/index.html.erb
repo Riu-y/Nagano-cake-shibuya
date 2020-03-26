@@ -43,15 +43,21 @@
 					<% end %>
 				<% end %>
 				<tr>
-					<td><%= link_to "買い物を続ける",products_path, class: "btn btn-success" %></td>
+					<td><%= link_to "買い物を続ける",products_path, class: "btn btn-primary" %></td>
 					<!-- 合計金額 -->
 					<td></td>
 					<td></td>
 					<td>合計金額</td>
 					<td><%= @add_price.to_s(:delimited) %>円</td>
 				</tr>
+				<tr>
 			</tbody>
+		</table>
 		</div>
-		<%= link_to "情報入力へ進む", new_customers_customer_order_detail_path(current_customer.id),class: "btn btn-success" %>
+	</div>
+	<div class="row">
+			<div class="text-center">
+			<%= link_to "情報入力へ進む", new_customers_customer_order_detail_path(current_customer.id),class: "btn btn-success btn-lg active" %>
+		</div><br>
 	</div>
 </div>

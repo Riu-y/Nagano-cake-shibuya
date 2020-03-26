@@ -70,6 +70,7 @@ class Customers::OrderDetailsController < ApplicationController
 			@order_item = OrderItem.new(order_details_id: @order_detail.id, product_id: cart.product_id, number:cart.number, purchase_price: cart.number * cart.product.unit_price)
 			@order_item.save
 		end
+		current_customer.carts.destroy_all
 	end
 
 private
