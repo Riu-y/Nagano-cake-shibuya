@@ -69,3 +69,4 @@ gem 'jquery-rails'
 
 gem 'kaminari'
 gem 'pry-byebug'
+gem 'enum_help'

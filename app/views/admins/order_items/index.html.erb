@@ -15,10 +15,21 @@
 					<tbody>
 			 			<% @order_details.each do |order_detail| %>
 				 			<tr>
-					  			<td><%= order_detail.created_at %></td>
+					  			<td><%=link_to order_detail.created_at,admins_order_item_path(order_detail.id)%></td>
 					  			<td><%= order_detail.customer.full_name %></td>
 								<td><%= order_detail.total_number %></td>
-				  				<td></td>
+								<% case order_detail.order_stauts %>
+									<% when "wait_deposit" %>
+										<td>入金待ち</td>
+									<% when "payment_confirmation" %>
+										<td>入金確認</td>
+									<% when "inproduction" %>
+										<td>製作中</td>
+									<% when "preparing_for_shipment" %>
+										<td>発送準備中</td>
+									<% when "sent" %>
+										<td>発送済み</td>
+								<% end %>
 							</tr>
 						<% end %>
 					</tbody>

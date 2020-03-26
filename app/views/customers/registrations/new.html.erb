@@ -10,7 +10,7 @@
     <tbody>
 
   <tr>
-    <td>名前</td>
+    <td><strong><br>名前</strong></td>
     <td><%= f.label :姓 %>
     <%= f.text_field :family_name, autofocus: true, autocomplete:"", placeholder:"姓", class: "form-control" %></td>
     <td><%= f.label :名 %>
@@ -19,7 +19,7 @@
   </tr>
 
   <tr>
-  <td>フリガナ</td>
+  <td><strong><br>フリガナ</strong></td>
   <td><%= f.label :ｾｲ %>
     <%= f.text_field :family_name_kana, autofocus: true, autocomplete:"", placeholder:"姓（カナ）", class: "form-control" %></td>
     <td><%= f.label :ﾒｲ %>
@@ -29,7 +29,7 @@
 
   <tr>
     <td><%= f.label :メールアドレス %></td>
-    <td><%= f.email_field :email, autofocus: true, autocomplete:"", placeholder:"メールアドレス", class: "form-control" %></td>
+    <td><%= f.email_field :email, autofocus: true, autocomplete:"", placeholder:"メールアドレス", class: "form-control"%></td>
   </tr>
 
   <tr>

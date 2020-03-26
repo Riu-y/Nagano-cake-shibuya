@@ -5,6 +5,7 @@ def index
 	@shipping_addresses = ShippingAddress.all
 	@shipping_address = ShippingAddress.new
 	@customer = current_customer
+  
 end
 
 def new

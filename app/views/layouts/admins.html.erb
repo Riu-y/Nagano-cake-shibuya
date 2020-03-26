@@ -12,12 +12,13 @@
 	<header class="navbar navbar-fixed-top">
 		<div class="container">
 			<nav class='nav navbar-nav navbar-left' >
-				<%= image_tag('Nagano cake2.png') %>
+				<%= image_tag('Nagano cake3.png') %>
 			</nav>
 
 			<nav>
 				<ul class="nav navbar-nav navbar-right">
 					<% if admin_signed_in? %>
+						<li><%= link_to "商品一覧", admins_products_path,:style=>"color:white;" %></li>
 						<li><%= link_to "会員一覧", admins_customers_path,:style=>"color:white;" %></li>
 						<li><%= link_to "注文履歴一覧", admins_order_items_path,:style=>"color:white;" %></li>
 						<li><%= link_to "ジャンル管理", admins_genres_path,:style=>"color:white;" %></li>
