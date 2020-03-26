@@ -22,13 +22,27 @@
 									<%= order_detail.shipping_name %>
 								</td>
 								<td>
-									<% order_detail.order_products.each do |order_product| %>
-										<%= order_product.product.name %>
+									<% order_detail.order_items.each do |order_product| %>
+										<%= order_product.product.product_name %><br>
 									<% end %>
 								</td>
-								<td><%= order.total_fee %>円</td>
-								<td><%= order.status %></td>
-								<td><%= link_to "表示する", customers_customer_ordered_item(order.id), class: "btn btn-primary hover" %></td>
+								<td><% order_detail.total_fee %>円</td>
+									<% case order_detail.order_stauts %>
+										<% when 'wait_deposit' %>
+											<td>入金待ち</td>
+										<% when 'payment_confirmation' %> 
+											<td>入金確認</td>
+									 	<% when 'inproduction' %>
+											<td>制作中</td>
+									 	<% when 'preparing_for_shipment' %>
+											<td>発送準備中</td>
+									 	<% when 'sent' %>
+											<td>発送済み</td>
+									<% end %>
+								<td>
+									<%= link_to customers_customer_order_item_path(current_customer.id,order_detail.id), class: "btn btn-success" do %>
+										表示する
+									<% end %></td>
 							</tr>
 							<% end %>
 						</tbody>

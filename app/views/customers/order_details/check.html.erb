@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<h2>注文確認画面</h2>
+		<h2>注文情報確認</h2>
 		<div class="col-xs-8">
 			<table class="table">
 				<thead>
@@ -35,7 +35,14 @@
 						<% end %>
 				</tbody>
 			</table>
-					<h4><strong>支払い方法 :  </strong><%= @order_detail.payment_method %></h4>
+					<h4><strong>支払い方法 :  </strong>
+            <% case @order_detail.payment_method %>
+              <% when 'bank_transfer' %>
+                <td>銀行振込</td>
+              <% when 'credit' %>
+                <td>クレジット払い</td>
+              <% end %>
+					</h4>
 					<br>
 					<h4><strong>配送先住所 :  </strong> 〒<%= @order_detail.shipping_postal_code%> <%=@order_detail.shipping_address%></h4>
 					<br>
@@ -57,17 +64,17 @@
 		<div class="col-xs-4">
 			<table class="table">
 				<tr>
-					<td>送料</td>
+					<td class="active">送料</td>
 					<td><%= @order_detail.shipping_fee %>円</td>
 				</tr>
 
 				<tr>
-					<td>商品合計</td>
+					<td class="active">商品合計</td>
 					<td><%= @add_price.to_s(:delimited)%>円</td>
 				</tr>
 
 				<tr>
-					<td>請求金額</td>
+					<td class="active">請求金額</td>
 					<% price = @add_price + @order_detail.shipping_fee %>
 					<td><%= price.to_s(:delimited) %>円</td>
 				</tr>

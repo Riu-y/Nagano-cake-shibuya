@@ -45,7 +45,9 @@ class Customers::OrderDetailsController < ApplicationController
 		@order_detail.subtotal = array.sum
 		@order_detail.total_fee = @order_detail.subtotal + @order_detail.shipping_fee
 
-
+		# if @customer.carts.blank?
+		# 	redirect_to products_path
+		# end
 
 		if @order_detail.save
 			redirect_to check_customers_customer_order_detail_path(current_customer.id,@order_detail.id)

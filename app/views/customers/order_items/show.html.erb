@@ -1,43 +1,89 @@
-<h2>注文履歴詳細</h2>
-
-
 <div class="container">
-　<div class="row">
-　　<div class = "col-xs-6//">
-<table class="table table-bordered">
-    
-    
-      <tr><th>注文日</th><td>             </td></tr>
-      <tr><th>配送先</th><td>             </td></tr>
-      <tr><th>支払い方法</th><td>             </td></tr>
-      <tr><th>ステータス</th><td>             </td></tr>
-    </table>
-    
+  <div class="row">
+    <h2>注文履歴詳細</h2>
+    <div class = "col-xs-6">
+      <table class="table table-bordered">
+        <tr>
+          <th class="active">注文日</th>
+          <td><%= @order_detail.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+        <tr>
+          <th class="active">配送先</th>
+          <td>〒<%= @order_detail.shipping_postal_code %><br>
+              <%= @order_detail.shipping_address %><br>
+              <%= @order_detail.shipping_name %></td>
+        </tr>
+
+        <tr>
+          <th class="active">支払い方法</th>
+            <% case @order_detail.payment_method %>
+              <% when 'bank_transfer' %>
+                <td>銀行振込</td>
+              <% when 'credit' %>
+                <td>クレジット払い</td>
+              <% end %>
+        </tr>
+
+        <tr>
+          <th class="active">ステータス</th>
+            <% case @order_detail.order_stauts %>
+              <% when 'wait_deposit' %>
+                <td>入金待ち</td>
+              <% when 'payment_confirmation' %>
+                <td>入金確認</td>
+              <% when 'inproduction' %>
+                <td>制作中</td>
+              <% when 'preparing_for_shipment' %>
+                <td>発送準備中</td>
+              <% when 'sent' %>
+                <td>発送済み</td>
+            <% end %>
+          </td>
+      </tr>
+     </table>
+    </div>
+
+    <div class = "col-xs-3">
+        <table class="table table-bordered">
+          <tr>
+            <th class="active">商品合計</th>
+            <td><%= @order_detail.subtotal %></td>
+          </tr>
+          <tr>
+            <th class="active">配送料</th>
+            <td><%= @order_detail.shipping_fee %>円</td>
+          </tr>
+          <tr>
+            <th class="active">ご請求額</th>
+            <td><%= @order_detail.total_fee %>円</td>
+          </tr>
+         </table>
+      </div>
+
+
+    <div class="row">
+      <div class = "col-xs-9">
+        <table class="table table-bordered">
+          <table class="table">
+            <thead>
+              <tr class="active">
+                <th>商品</th>
+                <th>単価</th>
+                <th>個数</th>
+                <th>小計</th>
+              </tr>
+            </thead>
+             <% @order_detail.order_items.each do |order_product| %>
+            <tbody>
+              <tr>
+                <td><%= order_product.product.product_name %></td>
+                <td><%= order_product.product.unit_price %></td>
+                <td><%= order_product.number %></td>
+                <td><%= order_product.purchase_price %></td>
+              </tr>
+             <% end %>
+             </tbody>
+          </table>
+    </div>
   </div>
-
-
-
-<div class = "col-xs-3">
-<table class="table table-bordered">
-    
-       <tr><th>商品合計</th><td>             </td></tr>
-      <tr><th>配送料</th><td>             </td></tr>
-      <tr><th>支払い方法</th><td>             </td></tr>
-      <tr><th>ご請求額</th><td>             </td></tr>
-    </table>
-  </div>
-</div>
-</div>
-
-
-<div class="row">
-  <div class = "col-xs-9">
-  <table class="table table-bordered">
-    
-       <tr><th>商品合計</th><td>             </td></tr>
-      <tr><th>配送料</th><td>             </td></tr>
-      <tr><th>支払い方法</th><td>             </td></tr>
-      <tr><th>ご請求額</th><td>             </td></tr>
-    </table>
-</div>
 </div>
