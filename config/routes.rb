@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
 devise_for :admins, controllers: {
   sessions:      'admins/sessions',
   passwords:     'admins/passwords',
@@ -24,7 +25,7 @@ end
 namespace :admins do
 	resources :customers, only:[:index, :show, :edit, :update]
 	resources :products
-	resources :ordered_items, only: [:index, :show, :update]
+	resources :order_items, only: [:index, :show, :update]
 	resources :genres, only: [:index, :create, :edit, :update]
 	root 'homes#top'
 end
@@ -43,7 +44,7 @@ namespace :customers do
 				post :finish, as: :finish
 			end
 		end
-		resources :ordered_items, only:[:index, :show]
+		resources :order_items, only:[:index, :show]
 		resources :carts, only:[:index, :update, :destroy, :create]
 	    delete '/customers/customers/:customer_id/cart_alldestroy' => 'carts#alldestroy', as: :alldestroy
 		resources :shipping_addresses, only:[:index, :create, :edit, :update, :destroy]

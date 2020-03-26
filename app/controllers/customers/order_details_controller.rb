@@ -67,7 +67,7 @@ class Customers::OrderDetailsController < ApplicationController
 		@order_detail = OrderDetail.find_by(customer_id: current_customer.id, id: params[:id])
 
 		current_customer.carts.each do |cart|
-			@order_item = OrderItem.new(order_details_id: @order_detail.id, product_id: cart.product_id, number:cart.number, purchase_price: cart.number * cart.product.unit_price)
+			@order_item = OrderItem.new(order_detail_id: @order_detail.id, product_id: cart.product_id, number:cart.number, purchase_price: cart.number * cart.product.unit_price)
 			@order_item.save
 		end
 	end
