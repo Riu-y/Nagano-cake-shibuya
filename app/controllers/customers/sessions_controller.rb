@@ -11,13 +11,13 @@ class Customers::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-    # def after_sign_in_path_for(resource)
-    #   cutomers_customer_path(resource)
-    # end
+    def after_sign_in_path_for(resource)
+      customers_root_path
+    end
 
   # DELETE /resource/sign_out
     def after_sign_out_path_for(resource)
-      customers_root_path
+      new_customer_session_path
     end
 
   protected
