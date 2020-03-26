@@ -1,0 +1,53 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-9 ">
+		<h1>注文履歴詳細</h1>
+			<table class="table">
+				<tr>
+					<td>購入者</td>
+					<td><%= @order_detail.customer.full_name%></td>
+				</tr>
+				<tr>
+					<td>配送先</td>
+					<td><%= @order_detail.shipping_address %><br>
+						<%= @order_detail.shipping_name %></td>
+				</tr>
+				<tr>
+					<td>支払い方法</td>
+					<% case @order_detail.payment_method %>
+						<% when "credit" %>
+							<td>クレジットカード</td>
+						<% when "bank_transfer" %>
+							<td>銀行振込</td>
+					<% end %>
+				</tr>
+			</table>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>商品名</th>
+						<th>単価</th>
+						<th>数量</th>
+						<th>小計</th>
+						<th>制作ステータス</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @order_items.each do |order_item| %>
+						<%= form_for order_item, url:admins_order_item_path(order_item.id),method: :patch do |f| %>
+							<tr>
+								<td><%= order_item.product.product_name %></td>
+								<td><%= order_item.product.unit_price %></td>
+								<td><%= order_item.number%></td>
+								<td><%= order_item.purchase_price %></td>
+								<td><%= f.select :creation_status, OrderItem.creation_statuses_i18n.keys.map { |k| [OrderItem.creation_statuses_i18n[k], k]} %>
+								<%= f.submit "更新", class: "btn btn-primary",data: {:turbolinks=> "false"} %></td>
+							</tr>
+						<% end %>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
