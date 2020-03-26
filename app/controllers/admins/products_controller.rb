@@ -3,7 +3,7 @@ class Admins::ProductsController < ApplicationController
 	layout 'admins'
 
 	def index
-		@products = Product.all
+		@products = Product.all.page(params[:page]).per(10)
 	end
 
 	def new
@@ -14,7 +14,7 @@ class Admins::ProductsController < ApplicationController
 	def create
 		@product = Product.new(product_params)
 		if @product.save
-			redirect_to admins_product_path(@product.id)
+			redirect_to admins_products_path
 		else
 			render action: :new
 		end

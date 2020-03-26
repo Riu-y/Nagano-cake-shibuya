@@ -11,14 +11,14 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def after_sign_in_path_for(resource)
+      customers_root_path
+  end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def after_sign_out_path_for(resource)
+      new_customer_session_path
+  end
 
   # PUT /resource
   # def update

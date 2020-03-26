@@ -2,7 +2,7 @@ class Admins::CustomersController < ApplicationController
 	before_action :authenticate_admin!
 	layout 'admins'
 	def index
-		@customers = Customer.all.page(params[:page]).per(5)
+		@customers = Customer.all.page(params[:page]).per(10)
 	end
 
 	def show

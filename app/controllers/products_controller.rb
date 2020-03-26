@@ -1,9 +1,9 @@
 class ProductsController < ApplicationController
-	before_action :authenticate_customer!, only: [:show]
+	before_action :authenticate_customer!, only: [:show, :index]
 	layout 'customers'
 	def index
 		@genres = Genre.all
-		@products = Product.all
+		@products = Product.all.page(params[:page]).reverse_order.per(8)
 	end
 
 	def show
