@@ -5,7 +5,7 @@
 			<div class="col-lg-6">
 				<table class="table" id="none-border">
 					<tr>
-						<td>登録情報</td>
+						<td><strong>登録情報</strong></td>
 						<td><%=link_to "編集する", edit_customers_customer_path, class: 'btn btn-primary btn-sm' %>
 						<%=link_to "パスワードを変更する", edit_customer_password_path, class: 'btn btn-primary btn-sm'%></td>
 					</tr>
@@ -41,11 +41,11 @@
 				<div class="col-lg-4">
 					<table class="table" id="none-border">
 						<tr>
-							<td>配送先</td>
+							<td><strong>配送先</strong></td>
 							<td><%=link_to "一覧を見る", customers_customer_shipping_addresses_path(@customer.id), class: 'btn btn-primary btn-sm'%></td>
 						</tr>
 						<tr>
-							<td>注文履歴</td>
+							<td><strong>注文履歴</strong></td>
 							<td><%=link_to "一覧を見る", customers_customer_order_items_path(@customer.id), class: 'btn btn-primary btn-sm'%></td>
 						</tr>
 					</table>

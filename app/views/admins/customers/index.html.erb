@@ -30,8 +30,10 @@
 							</tr>
 						<% end %>
 					</tbody>
-					<td><%= paginate @customers %><td>
 				</table>
+				<div class="col-md-offset-4">
+					<%= paginate(@customers) %>
+				</div>
 			</div>
 		</div>
 	</div>
