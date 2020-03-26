@@ -1,5 +1,11 @@
 class OrderDetail < ApplicationRecord
+  has_many :order_items
   belongs_to :customer
+
+  def total_number
+    order_items.sum(:number)
+  end
+
 
 	enum order_status:{
     wait_deposit: 0, #入金待ち

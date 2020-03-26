@@ -1,7 +1,7 @@
 class Admins::OrderedItemsController < ApplicationController
 	layout 'admins'
 	def index
-	  @ordered_items = OrderedItem.all
+		@order_details = OrderDetail.all
 	end
 	def show
 		

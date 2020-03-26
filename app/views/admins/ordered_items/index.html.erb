@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
-			<h1>注文一覧画面</h1>
+			<h1>注文履歴一覧</h1>
 			<div class = "genre-list">
 				<table class="table">
 					<thead>
@@ -13,10 +13,12 @@
 						</tr>
 					</thead>
 					<tbody>
-			 			<% @ordered_items.each do |ordered_item| %>
+			 			<% @order_details.each do |order_detail| %>
 				 			<tr>
-					  			<td><%= ordered_item.created_at %></td>
-					  			
+					  			<td><%= order_detail.created_at %></td>
+					  			<td><%= order_detail.customer.full_name %></td>
+								<td><%= order_detail.total_number %></td>
+				  				<td></td>
 							</tr>
 						<% end %>
 					</tbody>
