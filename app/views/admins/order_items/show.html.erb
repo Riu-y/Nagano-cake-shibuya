@@ -21,6 +21,13 @@
 							<td>銀行振込</td>
 					<% end %>
 				</tr>
+				<tr>
+					<td>注文ステータス</td>
+					<%= form_for @order_detail, url:admins_order_item_path(order_item.id),method: :patch do |f| %>
+					<td><%= f.select :order_stauts, OrderDetail.order_stautses_i18n.keys.map { |k| [OrderDetail.order_stautses_i18n[k], k]} %>
+					<%= f.submit "更新", class: "btn btn-primary",data: {:turbolinks=> "false"} %></td>
+					<% end %>
+				</tr>
 			</table>
 
 			<table class="table">
