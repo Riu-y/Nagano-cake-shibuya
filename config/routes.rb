@@ -41,7 +41,6 @@ namespace :customers do
 				get :complete, as: :complete
 			end
 
-
 		resources :order_items, only:[:index, :show]
 		resources :carts, only:[:index, :update, :destroy, :create]
 	    delete '/customers/customers/:customer_id/cart_alldestroy' => 'carts#alldestroy', as: :alldestroy
