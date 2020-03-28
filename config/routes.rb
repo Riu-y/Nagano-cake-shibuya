@@ -37,13 +37,11 @@ namespace :customers do
 			get :delete, as: :delete
 			patch :active_false, as: :active_false
 		end
-		resources :order_details, only:[:new, :create]do
-			member do
-				get :check, as: :check
+		resources :order_details do
 				get :complete, as: :complete
-				post :finish, as: :finish
 			end
-		end
+
+
 		resources :order_items, only:[:index, :show]
 		resources :carts, only:[:index, :update, :destroy, :create]
 	    delete '/customers/customers/:customer_id/cart_alldestroy' => 'carts#alldestroy', as: :alldestroy
