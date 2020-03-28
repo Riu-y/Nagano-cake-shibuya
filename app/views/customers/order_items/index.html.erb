@@ -26,7 +26,7 @@
 										<%= order_product.product.product_name %><br>
 									<% end %>
 								</td>
-								<td><% order_detail.total_fee %>円</td>
+								<td><%= order_detail.total_fee.to_s(:delimited) %>円</td>
 									<% case order_detail.order_stauts %>
 										<% when 'wait_deposit' %>
 											<td>入金待ち</td>

@@ -13,12 +13,12 @@ class Customers::OrderDetailsController < ApplicationController
   	end
   end
 
-	def create
-		@order_detail = OrderDetail.new(order_detail_params)
-		@customer = current_customer
-		@order_detail.customer_id = current_customer.id
-		@carts = Cart.all
 
+	def index
+		@carts = Cart.all
+		@customer = current_customer
+		@order_detail = OrderDetail.find_by(customer_id: current_customer.id, id: params[:id])
+		@order_detail = OrderDetail.new(order_detail_params)
 
 		if  params[:select_address] == "ご自身の住所"
 			@order_detail.shipping_postal_code = current_customer.postal_code
@@ -40,17 +40,28 @@ class Customers::OrderDetailsController < ApplicationController
 			@order_detail.shipping_address = @shipping_address.shipping_address
 			@order_detail.shipping_name = @shipping_address.shipping_name
 		end
+	end
 
-			# 商品金額の計算
+	def create
+		@order_detail = OrderDetail.new(order_detail_params)
+		@customer = current_customer
+		@order_detail.customer_id = current_customer.id
+		@carts = Cart.all
+	# 商品金額の計算
 		array = []
 		@carts.each do |cart|
 			array << cart.product.unit_price * cart.number
 		end
 		@order_detail.subtotal = array.sum
 		@order_detail.total_fee = @order_detail.subtotal + @order_detail.shipping_fee
+		current_customer.carts.each do |cart|
+			order_item = OrderItem.new(order_detail_id: @order_detail.id, product_id: cart.product_id, number:cart.number, purchase_price: cart.number * cart.product.unit_price)
+			order_item.save
+		end
+		current_customer.carts.destroy_all
 
 		if @order_detail.save
-			redirect_to check_customers_customer_order_detail_path(current_customer.id,@order_detail.id)
+			redirect_to customers_customer_order_detail_complete_path(current_customer.id,@order_detail.id)
 		else
 			flash[:information_check] = "未入力の情報があります"
 			redirect_back(fallback_location: customers_customer_path(current_customer.id))
@@ -84,13 +95,6 @@ class Customers::OrderDetailsController < ApplicationController
 	end
 
 	def complete
-		@order_detail = OrderDetail.find_by(customer_id: current_customer.id, id: params[:id])
-
-		current_customer.carts.each do |cart|
-			@order_item = OrderItem.new(order_detail_id: @order_detail.id, product_id: cart.product_id, number:cart.number, purchase_price: cart.number * cart.product.unit_price)
-			@order_item.save
-		end
-		current_customer.carts.destroy_all
 	end
 
 private
