@@ -4,6 +4,9 @@
 		<div class="text-right">
 			<%= link_to  "カートを空にする",customers_customer_alldestroy_path(@customer.id) ,method: :delete, class: "btn btn-danger" %>
 		</div><br>
+		<div class="blank-messege">
+		<%= flash[:blank] %>
+		</div>
 
 		<table class="table">
 			<thead>

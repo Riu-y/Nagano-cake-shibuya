@@ -1,5 +1,5 @@
 class ShippingAddress < ApplicationRecord
-  	belongs_to :customer
+	belongs_to :customer
 
 	validates :shipping_postal_code, presence: true
 	validates :shipping_address, presence: true

@@ -47,7 +47,7 @@
         <table class="table table-bordered">
           <tr>
             <th class="active">商品合計</th>
-            <td><%= @order_detail.subtotal %></td>
+            <td><%= @order_detail.subtotal %>円</td>
           </tr>
           <tr>
             <th class="active">配送料</th>
@@ -77,9 +77,9 @@
             <tbody>
               <tr>
                 <td><%= order_product.product.product_name %></td>
-                <td><%= order_product.product.unit_price %></td>
+                <td><%= order_product.product.unit_price %>円</td>
                 <td><%= order_product.number %></td>
-                <td><%= order_product.purchase_price %></td>
+                <td><%= order_product.purchase_price %>円</td>
               </tr>
              <% end %>
              </tbody>

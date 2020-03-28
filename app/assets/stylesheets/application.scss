@@ -100,13 +100,13 @@ th, td {
 
 }
 .col-lg-8 p{
-    position: absolute; 
+    position: absolute;
   top: 55%;
   left: 50%;
   text-align:center;
   -ms-transform: translate(-50%,-50%);
   -webkit-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);  
+  transform: translate(-50%,-50%);
   font-weight: bold; /*太字に*/
   font-size: 2em;/*サイズ2倍*/
   width :1000px;
@@ -118,7 +118,7 @@ th, td {
 	width :270px;
 	height:40px;
 	padding-top:5px;
-	border-radius:5px;
+	border-radius:2px;
 	text-align:center
 	}
 

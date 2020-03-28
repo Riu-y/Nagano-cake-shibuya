@@ -21,7 +21,7 @@ class OrderDetail < ApplicationRecord
   }
 
   validates :payment_method, presence: true
-  # validates :shipping_postal_code, presence: true
-  # validates :shipping_address, presence: true
-  # validates :shipping_name, presence: true
+  validates :shipping_postal_code, presence: true
+  validates :shipping_address, presence: true
+  validates :shipping_name, presence: true
 end
