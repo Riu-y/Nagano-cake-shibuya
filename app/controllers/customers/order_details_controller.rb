@@ -1,10 +1,16 @@
 class Customers::OrderDetailsController < ApplicationController
 	layout 'customers'
+	# before_action :cart_check, only: [:new]
 
 	def new
-		@order_detail = OrderDetail.new
 		@customer = Customer.find(params[:customer_id])
-		@delivery = ShippingAddress.new
+		if @customer.carts.blank?
+ 			flash[:blank] = "カートの中身がありません"
+			redirect_to customers_customer_carts_path(current_customer.id)
+		else
+			@order_detail = OrderDetail.new
+			@delivery = ShippingAddress.new
+  	end
   end
 
 	def create
@@ -28,13 +34,11 @@ class Customers::OrderDetailsController < ApplicationController
 
 		elsif params[:select_address] ==  "新しいお届け先"
 			@shipping_address = ShippingAddress.new(shipping_address_params)
-			@shirrong_address.customer_id = current_customer.id
+			@shipping_address.customer_id = current_customer.id
 			@shipping_address.save
-
-			@shipping_address = ShippingAddress.new(shipping_address_params)
-			@order_detail.shipping_postal_code = @shipping_address.postal_code
+			@order_detail.shipping_postal_code = @shipping_address.shipping_postal_code
 			@order_detail.shipping_address = @shipping_address.shipping_address
-			@order_detail.shipping_name = @shipping_address.name
+			@order_detail.shipping_name = @shipping_address.shipping_name
 		end
 
 			# 商品金額の計算
@@ -45,13 +49,10 @@ class Customers::OrderDetailsController < ApplicationController
 		@order_detail.subtotal = array.sum
 		@order_detail.total_fee = @order_detail.subtotal + @order_detail.shipping_fee
 
-		# if @customer.carts.blank?
-		# 	redirect_to products_path
-		# end
-
 		if @order_detail.save
 			redirect_to check_customers_customer_order_detail_path(current_customer.id,@order_detail.id)
 		else
+			flash[:information_check] = "未入力の情報があります"
 			redirect_back(fallback_location: customers_customer_path(current_customer.id))
 		end
 	end
@@ -80,11 +81,19 @@ private
 		params.require(:order_detail).permit(:shipping_postal_code,:shipping_name,:shipping_address,:shipping_fee,:subtotal,:total_fee,:payment_method)
 	end
 
- 	def shipping_address_params
-		params.require(:shipping_address).permit(:shipping_addresses_id, :shipping_postal_code, :shipping_address, :shipping_name)
-	end
+  def shipping_address_params
+      params.require(:shipping_address).permit(:shipping_address_id, :shipping_postal_code, :shipping_address, :shipping_name)
+  end
 
 	def order_item_params
 		params.require(:order_item).permit(:product_id,:number,:purchase_price)
 	end
+
+	# def cart_check
+	# 	@customer = current_customer
+	# 	carts = Cart.find(params[customer.id])
+	# 	if @customer.carts.blank?
+	# 	redirect_to customers_customer_carts_path(current_customer.id)
+	# 	end
+	# end
 end
