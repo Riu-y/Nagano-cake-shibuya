@@ -6,3 +6,29 @@ ja:
         waiting: 制作待ち
         doing: 製作中
         done: 制作完了
+
+  activerecord:
+    attributes:
+      customer:
+        name: 名前
+        password: パスワード
+        password_confirmation: パスワード確認
+        email: メールアドレス
+        postal_code: 郵便番号
+        address: 住所
+        telephone_number: 電話番号
+        family_name: 氏名（姓）
+        family_name_kana: 氏名（名）
+        first_name: フリガナ（ｾｲ）
+        first_name_kana: フリガナ（ﾒｲ）
+
+      shipping_address:
+        shipping_postal_code: 郵便番号
+        shipping_address: 住所
+        shipping_name: 宛名
+
+      product:
+        product_name: 商品名
+        product_image_id: 商品画像
+        product_description: 商品説明
+        unit_price: 税抜価格
