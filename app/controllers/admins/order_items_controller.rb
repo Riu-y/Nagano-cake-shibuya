@@ -18,7 +18,11 @@ class Admins::OrderItemsController < ApplicationController
 		@order_items = @order_detail.order_items.map{ |h| h[:creation_status] }
 		@order_items.delete("done")
 
-		if @order_item.creation_status == "doing"
+		if @order_item.creation_status == "cannot"
+			@order_detail.order_stauts = 1
+		elsif @order_item.creation_status == "weit"
+			@order_detail.order_stauts = 1
+		elsif @order_item.creation_status == "doing"
 			@order_detail.order_stauts = 2
 		elsif @order_item.creation_status == "done"
 			if @order_items.length == 0
