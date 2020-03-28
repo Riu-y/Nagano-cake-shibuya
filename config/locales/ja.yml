@@ -6,6 +6,7 @@ ja:
         waiting: 制作待ち
         doing: 製作中
         done: 制作完了
+    order_detail:
       order_stauts:
         wait_deposit: 入金待ち
         payment_confirmation: 入金確認
