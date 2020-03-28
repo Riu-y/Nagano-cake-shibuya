@@ -1,7 +1,7 @@
 class Admins::OrderItemsController < ApplicationController
 		layout 'admins'
 	def index
-		@order_details = OrderDetail.all
+		@order_details = OrderDetail.all.page(params[:page]).per(5)
 	end
 	def show
 		@order_detail = OrderDetail.find(params[:id])
@@ -19,14 +19,14 @@ class Admins::OrderItemsController < ApplicationController
 		@order_items.delete("done")
 
 		if @order_item.creation_status == "cannot"
-			@order_detail.order_stauts = 1
+			@order_detail.order_status = 1
 		elsif @order_item.creation_status == "weit"
-			@order_detail.order_stauts = 1
+			@order_detail.order_status = 1
 		elsif @order_item.creation_status == "doing"
-			@order_detail.order_stauts = 2
+			@order_detail.order_status = 2
 		elsif @order_item.creation_status == "done"
 			if @order_items.length == 0
-				@order_detail.order_stauts = 3
+				@order_detail.order_status = 3
 			end
 		end
 
@@ -41,6 +41,6 @@ class Admins::OrderItemsController < ApplicationController
 	end
 
 	def order_detail_params
-		params.permit(:order_stauts)
+		params.permit(:order_status)
 	end
 end

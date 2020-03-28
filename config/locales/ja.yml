@@ -7,7 +7,7 @@ ja:
         doing: 製作中
         done: 制作完了
     order_detail:
-      order_stauts:
+      order_status:
         wait_deposit: 入金待ち
         payment_confirmation: 入金確認
         inproduction: 制作中

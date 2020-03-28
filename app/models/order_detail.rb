@@ -7,7 +7,7 @@ class OrderDetail < ApplicationRecord
   end
 
 
-	enum order_stauts:{
+	enum order_status:{
     wait_deposit: 0, #入金待ち
     payment_confirmation: 1, #入金確認
     inproduction: 2, #制作中
