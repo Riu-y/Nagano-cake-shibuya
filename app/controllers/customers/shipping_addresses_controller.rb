@@ -2,7 +2,7 @@ class Customers::ShippingAddressesController < ApplicationController
 layout 'customers'
 
 def index
-	@shipping_addresses = ShippingAddress.all
+	@shipping_addresses = current_customer.shipping_addresses
 	@shipping_address = ShippingAddress.new
 	@customer = current_customer
   
