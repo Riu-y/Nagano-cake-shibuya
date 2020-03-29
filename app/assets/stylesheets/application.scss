@@ -82,21 +82,10 @@ th, td {
   background: #93c9ff;     /*背景の色を変える*/
 }
 
-/* ずれの修正のためのcss */
-.list-group-item{
-	margin-top: -20px;
-}
-/* ずれの修正のためのcss */
-.col-xs-3:nth-child(4){
-	margin-top:-20px;
-}
-/* ずれの修正のためのcss */
-.col-lg-8{
-	.aaaa{
-	margin-top: -20px;
-	}
 
-}
+
+
+
 .col-lg-8 p{
     position: absolute;
   top: 55%;

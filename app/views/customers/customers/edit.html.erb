@@ -11,21 +11,21 @@
             <tbody>
               <tr>
                 <td><%= f.label :氏名 %></td>
-                <td>(姓)<%= f.text_field :family_name %></td>
-                <td>(名)<%= f.text_field :first_name %></td>
+                <td>(姓)<%= f.text_field :family_name, class: "form-control form-control-sm" %></td>
+                <td>(名)<%= f.text_field :first_name, class: "form-control form-control-sm" %></td>
               </tr>
               <tr>
                 <td><%= f.label :フリガナ %></td>
-                <td>(ｾｲ)<%= f.text_field :family_name_kana %></td>
-                <td>(ﾒｲ)<%= f.text_field :first_name_kana %></td>
+                <td>(ｾｲ)<%= f.text_field :family_name_kana, class: "form-control form-control-sm" %></td>
+                <td>(ﾒｲ)<%= f.text_field :first_name_kana, class: "form-control form-control-sm" %></td>
               </tr>
               <tr>
                 <td><%= f.label :メールアドレス %></td>
-                <td><%= f.email_field :email %></td>
+                <td><%= f.email_field :email, class: "form-control form-control-sm" %></td>
               </tr>
               <tr>
                 <td><%= f.label :郵便番号 %></td>
-                <td><%= f.text_field :postal_code %></td>
+                <td><%= f.text_field :postal_code, class: "form-control form-control-sm" %></td>
               </tr>
 
               <tr>
@@ -35,7 +35,7 @@
 
               <tr>
                 <td><%= f.label :電話番号 %></td>
-                <td><%= f.text_field :telephone_number %></td>
+                <td><%= f.text_field :telephone_number, class: "form-control form-control-sm" %></td>
               </tr>
 
               <tr>
