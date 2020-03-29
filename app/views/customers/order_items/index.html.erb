@@ -40,14 +40,16 @@
 											<td>発送済み</td>
 									<% end %>
 								<td>
-									<%= link_to customers_customer_order_item_path(current_customer.id,order_detail.id), class: "btn btn-success" do %>
+								<%= link_to customers_customer_order_item_path(current_customer.id,order_detail.id), class: "btn btn-success" do %>
 										表示する
-									<% end %></td>
+								<% end %>
+								</td>
 							</tr>
 							<% end %>
 						</tbody>
 					</table>
 				</div>
+			<div class="text-center"><%= paginate @order_details %></div>
 			</div>
 		</div>
 	</div>

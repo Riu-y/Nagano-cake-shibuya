@@ -2,12 +2,12 @@
 	<div class="row">
 		<div class="col-lg-8">
 			<h1>マイページ</h1>
-			<div class="col-lg-6">
+			<div class="col-lg-8">
 				<table class="table" id="none-border">
 					<tr>
 						<td><strong>登録情報</strong></td>
-						<td><%=link_to "編集する", edit_customers_customer_path, class: 'btn btn-primary btn-sm' %>
-						<%=link_to "パスワードを変更する", edit_customer_password_path, class: 'btn btn-primary btn-sm'%></td>
+						<td><%=link_to "編集する", edit_customers_customer_path, class: 'btn btn-primary' %></td>
+						<td><%=link_to "パスワードを変更する", edit_customer_password_path, class: 'btn btn-primary' %></td>
 					</tr>
 				</table>
 				</div>
@@ -42,11 +42,11 @@
 					<table class="table" id="none-border">
 						<tr>
 							<td><strong>配送先</strong></td>
-							<td><%=link_to "一覧を見る", customers_customer_shipping_addresses_path(@customer.id), class: 'btn btn-primary btn-sm'%></td>
+							<td><%=link_to "一覧を見る", customers_customer_shipping_addresses_path(@customer.id), class: 'btn btn-primary' %></td>
 						</tr>
 						<tr>
 							<td><strong>注文履歴</strong></td>
-							<td><%=link_to "一覧を見る", customers_customer_order_items_path(@customer.id), class: 'btn btn-primary btn-sm'%></td>
+							<td><%=link_to "一覧を見る", customers_customer_order_items_path(@customer.id), class: 'btn btn-primary' %></td>
 						</tr>
 					</table>
 				</div>

@@ -20,7 +20,4 @@ class ProductsController < ApplicationController
 		@genre = Genre.find(params[:id])
 		@products = Product.where(genre_id: params[:id])
 	end
-
-	private
-
 end
