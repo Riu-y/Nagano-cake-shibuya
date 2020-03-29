@@ -34,12 +34,10 @@
 					</tbody>
 				</table>
 
-					<%= link_to "商品新規登録",new_admins_product_path, class: "btn btn-success btn btn-block" %>
-					<div class="col-md-offset-4">
-						<%= paginate(@products) %>
-					</div>
-			 </div>
-		 </div>
+				<%= link_to "商品新規登録",new_admins_product_path, class: "btn btn-success btn btn-block" %>
+				<div class="text-center"><%= paginate @products %></div>
+			</div>
+		</div>
 	</div>
 </div>
 

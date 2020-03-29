@@ -24,7 +24,7 @@
 				<tr>
 					<td>注文ステータス</td>
 					<%= form_for @order_detail, url:customers_customer_order_detail_path(@order_detail.id),data: {:turbolinks=> "false"},method: :patch do |f| %>
-					<td><%= f.select :order_stauts, OrderDetail.order_stauts_i18n.keys.map { |k| [OrderDetail.order_stauts_i18n[k], k]} %>
+					<td><%= f.select :order_status, OrderDetail.order_statuses_i18n.keys.map { |k| [OrderDetail.order_statuses_i18n[k], k]} %>
 					<%= f.submit "更新", class: "btn btn-primary",data: {:turbolinks=> "false"} %></td>
 					<% end %>
 				</tr>
