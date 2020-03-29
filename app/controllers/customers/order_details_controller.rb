@@ -72,15 +72,15 @@ class Customers::OrderDetailsController < ApplicationController
 		@order_items = @order_detail.order_items
 		@order_detail.update(order_detail_params)
 
-		if @order_detail.order_stauts == "wait_deposit"
+		if @order_detail.order_status == "wait_deposit"
 			@order_items.update_all(creation_status: 0)
-		elsif @order_detail.order_stauts == "payment_confirmation"
+		elsif @order_detail.order_status == "payment_confirmation"
 			@order_items.update_all(creation_status: 1)
-		elsif @order_detail.order_stauts == "inproduction"
+		elsif @order_detail.order_status == "inproduction"
 			@order_items.update_all(creation_status: 2)
-		elsif @order_detail.order_stauts == "preparing_for_shipment"
+		elsif @order_detail.order_status == "preparing_for_shipment"
 			@order_items.update_all(creation_status: 3)
-		elsif @order_detail.order_stauts == "sent"
+		elsif @order_detail.order_status == "sent"
 			@order_items.update_all(creation_status: 3)
 		end
 
@@ -92,7 +92,7 @@ class Customers::OrderDetailsController < ApplicationController
 
 private
 	def order_detail_params
-		params.require(:order_detail).permit(:shipping_postal_code,:shipping_name,:shipping_address,:shipping_fee,:subtotal,:total_fee,:payment_method,:order_stauts)
+		params.require(:order_detail).permit(:shipping_postal_code,:shipping_name,:shipping_address,:shipping_fee,:subtotal,:total_fee,:payment_method,:order_status)
 	end
 
 	def shipping_address_params
