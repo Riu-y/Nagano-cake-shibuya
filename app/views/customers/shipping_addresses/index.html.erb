@@ -52,8 +52,8 @@
           <td><%= shipping.shipping_postal_code%></td>
           <td><%=shipping.shipping_address%></td>
           <td><%=shipping.shipping_name%></td>
-          <td><%= link_to "Edit",edit_customers_customer_shipping_address_path(shipping.customer_id,shipping.id), class: "btn-sm btn-success edit_book_#{shipping.id}" %></td>
-          <td><%= link_to "Destroy",customers_customer_shipping_address_path(shipping.customer_id,shipping.id), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{shipping.id}" %></td>
+          <td><%= link_to "編集する",edit_customers_customer_shipping_address_path(shipping.customer_id,shipping.id), class: "btn-sm btn-success edit_book_#{shipping.id}" %></td>
+          <td><%= link_to "削除する",customers_customer_shipping_address_path(shipping.customer_id,shipping.id), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{shipping.id}" %></td>
         </tr>
        <% end %>
       </tbody>
