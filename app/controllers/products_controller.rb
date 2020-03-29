@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-	before_action :authenticate_customer!, only: [:show, :index]
+	before_action :authenticate_customer!, only: [:show]
 	layout 'customers'
 	def index
 		@genres = Genre.all
