@@ -1,5 +1,6 @@
 class Customers::OrderDetailsController < ApplicationController
 	layout 'customers'
+	before_action :authenticate_customer!
 
 	def new
 		@customer = Customer.find(params[:customer_id])
@@ -49,7 +50,7 @@ class Customers::OrderDetailsController < ApplicationController
 			@carts.each do |cart|
 				array << cart.product.unit_price * cart.number
 			end
-		@order_detail.subtotal = array.sum
+		@order_detail.subtotal = array.sum * 1.1
 		@order_detail.total_fee = @order_detail.subtotal + @order_detail.shipping_fee
 		if @order_detail.save
 	#カートの中身をOrderItemテーブルにeachで格納
@@ -58,14 +59,13 @@ class Customers::OrderDetailsController < ApplicationController
 				order_item.save
 			end
 			current_customer.carts.destroy_all
-			redirect_to customers_customer_order_detail_complete_path(current_customer.id,@order_detail.id)
+			redirect_to complete_customers_customer_order_detail_path(current_customer.id,@order_detail.id)
 		else
 	#注文情報（orderdetail）にvalidatesをかけてあるので未入力の場合、ここでredirectを実行
 			flash[:information_check] = "未入力の情報があります"
 			redirect_to new_customers_customer_order_detail_path(current_customer.id,@order_detail.id)
 		end
 	end
-
 
 	def update
 		@order_detail = OrderDetail.find(params[:id])
@@ -90,7 +90,7 @@ class Customers::OrderDetailsController < ApplicationController
 	def complete
 	end
 
-private
+	private
 	def order_detail_params
 		params.require(:order_detail).permit(:shipping_postal_code,:shipping_name,:shipping_address,:shipping_fee,:subtotal,:total_fee,:payment_method,:order_status)
 	end

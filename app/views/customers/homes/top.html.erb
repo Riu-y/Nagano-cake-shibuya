@@ -3,7 +3,7 @@
     <div class = "col-lg-4">
 	   <ul class="list-group">
       <li class="list-group-item">ジャンル検索</li>
-		<% @genres.each do |genre| %>
+	     	<% @genres.each do |genre| %>
 		  <li class="list-group-item"><%= link_to genre.genre_name,genre_search_product_path(genre.id) %></li>
 		     <% end %>
 	   </ul>
