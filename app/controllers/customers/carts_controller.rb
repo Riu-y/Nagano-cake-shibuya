@@ -15,14 +15,13 @@ class Customers::CartsController < ApplicationController
 
 	def index
 		@customer = current_customer
-		@carts = Cart.all
+		@carts = current_customer.carts
 		@cart = Cart.new
 	end
 
 	def update
 		@customer = current_customer
 		@cart = Cart.find_by(customer_id: @customer.id,id: params[:id])
-		# binding.pry
 		@cart.update(cart_params)
 		redirect_to customers_customer_carts_path(current_customer.id)
 	end
@@ -36,14 +35,13 @@ class Customers::CartsController < ApplicationController
 
 	def alldestroy
 		@customer = current_customer
-		@carts = Cart.all
+		@carts = current_customer.carts
 		@carts.destroy_all
 		redirect_to customers_customer_carts_path(@customer.id)
 	end
 
 	private
-
 	def cart_params
-  		params.require(:cart).permit(:number,:product_id)
-  	end
+		params.require(:cart).permit(:number,:product_id)
+	end
 end

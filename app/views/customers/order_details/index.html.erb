@@ -70,18 +70,18 @@
 		</div>
 	</div>
 	<div class="row">
-		<!-- 注文処理 -->
 			<div class="submit">
-					<%= form_with(model: @order_details, url:customers_customer_order_details_path(@customer), method: :post, data: {remote: false}) do |f| %>
-					  <%= f.hidden_field :shipping_fee, :value => @order_detail.shipping_fee %>
-					  <%= f.hidden_field :subtotal, :value => @order_detail.subtotal %>
-					  <%= f.hidden_field :total_fee, :value => @order_detail.total_fee %>
-					  <%= f.hidden_field :payment_method, :value => @order_detail.payment_method %>
-					  <%= f.hidden_field :shipping_name, :value => @order_detail.shipping_name %>
-					  <%= f.hidden_field :shipping_postal_code, :value => @order_detail.shipping_postal_code %>
-					  <%= f.hidden_field :shipping_address, :value => @order_detail.shipping_address %>
-					  <%= f.submit "購入を確定する", class: 'btn btn-success btn-lg' %>
-					  <% end %>
+				<!-- 以下、orderdetailテーブルにデータを格納するためにhidden_fieldにて処理 -->
+					<%= form_with(model: @order_detail, url:customers_customer_order_details_path(@customer), method: :post, local: true ) do |f| %>
+						<%= f.hidden_field :shipping_fee, :value => @order_detail.shipping_fee %>
+						<%= f.hidden_field :subtotal, :value => @order_detail.subtotal %>
+						<%= f.hidden_field :total_fee, :value => @order_detail.total_fee %>
+						<%= f.hidden_field :payment_method, :value => @order_detail.payment_method %>
+						<%= f.hidden_field :shipping_name, :value => @order_detail.shipping_name %>
+						<%= f.hidden_field :shipping_postal_code, :value => @order_detail.shipping_postal_code %>
+						<%= f.hidden_field :shipping_address, :value => @order_detail.shipping_address %>
+						<%= f.submit "購入を確定する", class: 'btn btn-success btn-lg' %>
+					<% end %>
 			</div>
 	</div>
 </div>

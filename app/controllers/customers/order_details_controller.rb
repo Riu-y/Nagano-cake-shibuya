@@ -1,6 +1,5 @@
 class Customers::OrderDetailsController < ApplicationController
 	layout 'customers'
-	# before_action :cart_check, only: [:new]
 
 	def new
 		@customer = Customer.find(params[:customer_id])
@@ -9,15 +8,12 @@ class Customers::OrderDetailsController < ApplicationController
 			redirect_to customers_customer_carts_path(current_customer.id)
 		else
 			@order_detail = OrderDetail.new
-			@delivery = ShippingAddress.new
-  	end
-  end
-
+		end
+	end
 
 	def index
-		@carts = Cart.all
+		@carts = current_customer.carts
 		@customer = current_customer
-		@order_detail = OrderDetail.find_by(customer_id: current_customer.id, id: params[:id])
 		@order_detail = OrderDetail.new(order_detail_params)
 
 		if  params[:select_address] == "ご自身の住所"
@@ -27,13 +23,14 @@ class Customers::OrderDetailsController < ApplicationController
 
     elsif params[:select_address] == "登録済み住所から選択"
     	@shipping_address = ShippingAddress.find(params[:detail][:shipping_address_id])
-    	# 上記で偽装モデル(:detail)に入れておいた(shipping_address_id)を引き出きだす。
+    # 上記の偽装モデル(:detail)に(shipping_address_id)を格納する。後ほどコントローラで呼び出す。
 			@order_detail.shipping_postal_code = @shipping_address.shipping_postal_code
 			@order_detail.shipping_address = @shipping_address.shipping_address
 			@order_detail.shipping_name = @shipping_address.shipping_name
 
 		elsif params[:select_address] ==  "新しいお届け先"
 			@shipping_address = ShippingAddress.new(shipping_address_params)
+		#新しいお届け先を登録するためにnewする
 			@shipping_address.customer_id = current_customer.id
 			@shipping_address.save
 			@order_detail.shipping_postal_code = @shipping_address.shipping_postal_code
@@ -46,33 +43,29 @@ class Customers::OrderDetailsController < ApplicationController
 		@order_detail = OrderDetail.new(order_detail_params)
 		@customer = current_customer
 		@order_detail.customer_id = current_customer.id
-		@carts = Cart.all
-	# 商品金額の計算
+		@carts = current_customer.carts
+	#商品金額の計算
 		array = []
-		@carts.each do |cart|
-			array << cart.product.unit_price * cart.number
-		end
+			@carts.each do |cart|
+				array << cart.product.unit_price * cart.number
+			end
 		@order_detail.subtotal = array.sum
 		@order_detail.total_fee = @order_detail.subtotal + @order_detail.shipping_fee
-		current_customer.carts.each do |cart|
-			order_item = OrderItem.new(order_detail_id: @order_detail.id, product_id: cart.product_id, number:cart.number, purchase_price: cart.number * cart.product.unit_price)
-			order_item.save
-		end
-		current_customer.carts.destroy_all
-
 		if @order_detail.save
+	#カートの中身をOrderItemテーブルにeachで格納
+			current_customer.carts.each do |cart|
+				order_item = OrderItem.new(order_detail_id: @order_detail.id, product_id: cart.product_id, number:cart.number, purchase_price: cart.number * cart.product.unit_price)
+				order_item.save
+			end
+			current_customer.carts.destroy_all
 			redirect_to customers_customer_order_detail_complete_path(current_customer.id,@order_detail.id)
 		else
+	#注文情報（orderdetail）にvalidatesをかけてあるので未入力の場合、ここでredirectを実行
 			flash[:information_check] = "未入力の情報があります"
-			redirect_back(fallback_location: customers_customer_path(current_customer.id))
+			redirect_to new_customers_customer_order_detail_path(current_customer.id,@order_detail.id)
 		end
 	end
 
-	def check
-		@carts = Cart.all
-		@customer = current_customer
-		@order_detail = OrderDetail.find_by(customer_id: current_customer.id, id: params[:id])
-	end
 
 	def update
 		@order_detail = OrderDetail.find(params[:id])
@@ -102,19 +95,11 @@ private
 		params.require(:order_detail).permit(:shipping_postal_code,:shipping_name,:shipping_address,:shipping_fee,:subtotal,:total_fee,:payment_method,:order_status)
 	end
 
-  def shipping_address_params
-      params.require(:shipping_address).permit(:shipping_address_id, :shipping_postal_code, :shipping_address, :shipping_name)
-  end
+	def shipping_address_params
+		params.require(:shipping_address).permit(:shipping_address_id, :shipping_postal_code, :shipping_address, :shipping_name)
+	end
 
 	def order_item_params
 		params.require(:order_item).permit(:product_id,:number,:purchase_price)
 	end
-
-	# def cart_check
-	# 	@customer = current_customer
-	# 	carts = Cart.find(params[customer.id])
-	# 	if @customer.carts.blank?
-	# 	redirect_to customers_customer_carts_path(current_customer.id)
-	# 	end
-	# end
 end

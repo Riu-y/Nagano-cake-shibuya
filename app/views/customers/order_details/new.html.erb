@@ -6,11 +6,12 @@
 			</div>
 
 			<h3>支払方法</h3>
+
 				<%= form_with model: @order_detail, url: customers_customer_order_details_path(@customer),method: :get,data: {remote: false} do |f| %>
 					<%= f.hidden_field :customer_id %>
 
 					<div class= "form-group">
-						<%= f.radio_button :payment_method, :credit %><!-- ラジオボタンの使い方は合っているか？ -->
+						<%= f.radio_button :payment_method, :credit %>
 						<%= f.label :payment_method, "クレジットカード" %>
 					</div>
 					<div class= "form-group">
@@ -19,6 +20,7 @@
 					</div>
 
 			<h3>お届け先</h3><br>
+
 					<div class= "form-group">
 						<%= f.label "ご自身の住所" %><br>
 						<%= radio_button_tag( 'select_address' , 'ご自身の住所' ) %>
