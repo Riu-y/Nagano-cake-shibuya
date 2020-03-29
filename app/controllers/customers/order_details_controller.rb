@@ -58,7 +58,7 @@ class Customers::OrderDetailsController < ApplicationController
 				order_item.save
 			end
 			current_customer.carts.destroy_all
-			redirect_to customers_customer_order_detail_complete_path(current_customer.id,@order_detail.id)
+			redirect_to complete_customers_customer_order_detail_path(current_customer.id,@order_detail.id)
 		else
 	#注文情報（orderdetail）にvalidatesをかけてあるので未入力の場合、ここでredirectを実行
 			flash[:information_check] = "未入力の情報があります"

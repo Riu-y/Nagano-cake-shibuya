@@ -56,5 +56,21 @@
 				</tbody>
 			</table>
 		</div>
+		<div class="col-xs-3">
+			<table class="table table-bordered">
+				<tr>
+					<th class="active">商品合計</th>
+					<td><%= @order_detail.subtotal.to_s(:delimited) %>円</td>
+				</tr>
+				<tr>
+					<th class="active">送料</th>
+					<td><%= @order_detail.shipping_fee.to_s(:delimited) %>円</td>
+				</tr>
+				<tr>
+					<th class="active">請求額合計</th>
+					<td><%= @order_detail.total_fee.to_s(:delimited) %>円</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </div>
